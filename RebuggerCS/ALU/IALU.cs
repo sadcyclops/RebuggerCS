@@ -6,7 +6,7 @@ namespace RebuggerCS
 		/*Arithmertic*/
 		void Add(RegisterFile file, int rd, int rs, int rt);
 		void Addi(RegisterFile file, int rt, int rs, int immediate);
-		void Addiu(RegisterFile file, int rt, int rs, int immediate);
+		void Addiu(RegisterFile file, int rt, int rs, uint immediate);
 		void Addu(RegisterFile file, int rt, int rs, int immediate);
 		void Mult(RegisterFile file, int rt, int rs);
 		void Multu(RegisterFile file, int rt, int rs);
