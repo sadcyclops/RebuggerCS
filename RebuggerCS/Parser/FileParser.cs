@@ -22,23 +22,20 @@ namespace RebuggerCS
 
 		public void GetData()
 		{
-			Boolean isText = false;
+			Boolean isData = true;
 			Regex rgx = new Regex(@".*:.*");
 			for (int i = 0; i < block.Length; i++)
 			{
-				if (!isText)
+				if (!isData)
 				{
-					isText = block[i].Trim().Equals(".text");
+					isData = block[i].Trim().Equals(".text");
 				}
 				else
 				{
 					if (rgx.IsMatch(this.block[i]))
 					{
-						RO_Data.Add(block[i].Split(':')[0], i+1);
-					}
-				}
-			}
-		}
+						String[] things = block [i].Split (':');
+						RO_Data.Add(things[0], things[1]); }}}}
 
 		public void GetLabels()
 		{
@@ -54,12 +51,9 @@ namespace RebuggerCS
 				{
 					if (rgx.IsMatch(this.block[i]))
 					{
-						labels.Add(block[i].Split(':')[0], i+1);
-					}
-				}
-			}
-		}
+						labels.Add(block[i].Split(':')[0], i+1); }}}}
 
-
-	}
-}
+		public void parse() {
+			this.ClearComments ();
+			this.GetData ();
+			this.GetLabels (); }}}
