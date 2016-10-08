@@ -28,6 +28,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="RegisterFile.cs" />
+    <Compile Include="Exceptions\StackException.cs" />
+    <Compile Include="Exceptions\RegisterException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
 </Project>
