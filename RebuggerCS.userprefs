@@ -1,8 +1,12 @@
 ﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default">
   <MonoDevelop.Ide.ItemProperties.RebuggerCS PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCS/FileParser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCS/DataStructures/StandardRegisterFile.cs">
     <Files>
-      <File FileName="RebuggerCS/FileParser.cs" Line="30" Column="17" />
+      <File FileName="RebuggerCS/ALU/IntALU.cs" Line="41" Column="3" />
+      <File FileName="RebuggerCS/DataStructures/RegisterFile.cs" Line="8" Column="12" />
+      <File FileName="RebuggerCS/ALU/IALU.cs" Line="23" Column="35" />
+      <File FileName="RebuggerCS/DataStructures/SpecialRegisterFile.cs" Line="9" Column="4" />
+      <File FileName="RebuggerCS/DataStructures/StandardRegisterFile.cs" Line="4" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

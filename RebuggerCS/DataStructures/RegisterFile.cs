@@ -1,36 +1,36 @@
 ﻿using System;
 namespace RebuggerCS
 {
-	public class RegisterFile
+	abstract public class RegisterFile
 	{
 		public const uint BYTE = 255;
 		public const uint WORD = 65535;
+		protected uint[] data;
 
-		public uint[] data;
-
-		public RegisterFile()
-		{
-			this.data = new uint[30];
-		}
 
 		public byte GetByte(int register, int position)
 		{
-			if (position > 3) {throw new RegisterException();}
+			if (position > 3) { throw new RegisterException(); }
 			return (byte)(this.data[register] >> (position << 3));
 		}
 
-		public ushort getWord(int register, int position)
+		public ushort GetWord(int register, int position)
 		{
-			if (position > 3) {throw new RegisterException();}
+			if (position > 3) { throw new RegisterException(); }
 			return (ushort)(this.data[register] >> (position << 4));
 		}
 
-		public uint getInt(int register)
+		public uint GetUInt(int register)
 		{
 			return this.data[register];
 		}
 
-		public void setByte(int register, int pos, uint value)
+		public int GetInt(int register)
+		{
+			return (int) this.data[register];
+		}
+
+		public void SetByte(int register, int pos, uint value)
 		{
 			if (pos > 3) {throw new RegisterException();}
 			uint target = this.data[register];
@@ -39,7 +39,7 @@ namespace RebuggerCS
 			this.data[register] = target;
 		}
 
-		public void setWord(int register, int pos, uint value)
+		public void SetWord(int register, int pos, uint value)
 		{
 			if(pos > 2 || pos % 2 != 0){throw new RegisterException();}
 			uint target = this.data[register];
@@ -48,7 +48,12 @@ namespace RebuggerCS
 			this.data[register] = target;
 		}
 
-		public void setInt(int register, uint value)
+		public void SetInt(int register, int value)
+		{
+			this.data[register] = (uint) value;
+		}
+
+		public void SetUInt(int register, uint value)
 		{
 			this.data[register] = value;
 		}
