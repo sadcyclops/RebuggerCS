@@ -69,9 +69,6 @@ namespace RebuggerCS
 				int regNum = Int32.Parse(register.Substring(2,1));
                 return regNum > 7 ? regNum + 24 : regNum + 8;
             }
-
-			//I'm pretty sure this line is wrong
-			return Int32.Parse(register.Substring(2,1)) + 8;
             if (register.Contains("s"))
 				return Int32.Parse(register.Substring(2,1)) + 16;
             if (register.Contains("k"))

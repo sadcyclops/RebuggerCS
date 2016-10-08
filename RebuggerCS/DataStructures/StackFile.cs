@@ -7,11 +7,11 @@ namespace RebuggerCS
 		const int BYTE = 255;
 		const int WORD = 65535;
 
-		private List<Int32> stack;
+		private List<UInt32> stack;
 		private int stackPointer;
 
 		public StackFile() {
-			this.stack = new List<Int32> ();
+			this.stack = new List<UInt32> ();
 			this.stackPointer = 64000;
 		}
 
@@ -40,12 +40,12 @@ namespace RebuggerCS
 		public void pushByte(byte value) {
 			this.stackPointer -= 1;
 			if (stackPointer % 4 == 3) {
-				this.stack.Add((int) value);
+				this.stack.Add((uint) value);
 			} else {
-				int end = this.stack.RemoveAt(this.stack.Count);
+				uint end = this.stack[this.stack.Count];
 				value <<= (((stackPointer + 2) % 4) << 3); // previously stackPointer + 2 % 4 
 				end += value;
-				this.stack.Add(end);
+				this.stack[this.stack.Count] = end;
 			}
 		}
 
@@ -58,11 +58,11 @@ namespace RebuggerCS
 
 			this.stackPointer -= 2;
 			if (stackPointer % 4 == 2) {
-				this.stack.Add((int) value);
+				this.stack.Add((uint) value);
 			} else {
-				int end = this.stack.RemoveAt(this.stack.Count);
-				//removed end+= (value <<= 16)
-				this.stack.Add(end);
+				uint end = this.stack[this.stack.Count];
+				end += ((uint) value << 16);
+				this.stack [this.stack.Count] = end;
 			}
 		}
 
@@ -78,9 +78,10 @@ namespace RebuggerCS
 			byte value;
 			this.stackPointer++;
 			if (this.stackPointer % 4 == 0) {
-				value = (byte) this.stack.RemoveAt(this.stack.Count);
+				value = (byte) this.stack[this.stack.Count];
+				this.stack.RemoveAt (this.stack.Count);
 			} else {
-				int end = this.stack.RemoveAt(this.stack.Count);
+				uint end = this.stack[this.stack.Count];
 				this.stack.Add (end);
 				end >>= ((this.stackPointer - 1) << 3);
 				value = (byte) end;
