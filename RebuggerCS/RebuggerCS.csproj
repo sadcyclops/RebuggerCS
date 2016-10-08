@@ -31,9 +31,13 @@
     <Compile Include="IALU.cs" />
     <Compile Include="Exceptions\StackException.cs" />
     <Compile Include="Exceptions\RegisterException.cs" />
+    <Compile Include="FileParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
 </Project>
