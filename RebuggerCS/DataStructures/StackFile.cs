@@ -90,7 +90,7 @@ namespace RebuggerCS
 				uint end = this.stack[this.stack.Count];
 				end >>= ((this.stackPointer - 1) << 3);
 				value = (byte) end;
-
+				end &= ~((BYTE) << (this.stackPointer - 1) % 4);
 				this.stack.Add (end);
 			}
 			return value;
@@ -108,6 +108,7 @@ namespace RebuggerCS
 				uint end = this.stack[this.stack.Count];
 				end >>= (16);
 				value = (ushort) end;
+				this.stack[this.stack.Count] &= ~((WORD << (16)));
 			}
 			return value;
 		}
