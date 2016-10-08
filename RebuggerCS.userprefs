@@ -1,6 +1,15 @@
 ﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default">
   <MonoDevelop.Ide.ItemProperties.RebuggerCS PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCS/ALU/AddCommand.cs">
+    <Files>
+      <File FileName="RebuggerCS/ALU/IntALU.cs" Line="1" Column="1" />
+      <File FileName="RebuggerCS/ALU/AddCommand.cs" Line="12" Column="4" />
+      <File FileName="RebuggerCS/ALU/ALUCommand.cs" Line="17" Column="25" />
+      <File FileName="RebuggerCS/ALU/AndICommand.cs" Line="1" Column="1" />
+      <File FileName="RebuggerCS/ALU/DivCommand.cs" Line="9" Column="4" />
+      <File FileName="RebuggerCS/Exceptions/RegisterException.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
