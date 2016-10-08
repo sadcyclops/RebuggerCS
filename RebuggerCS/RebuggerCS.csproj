@@ -39,7 +39,6 @@
     <Compile Include="Exceptions\ParserException.cs" />
     <Compile Include="Parser\InstructionMapper.cs" />
     <Compile Include="Processor\Processor.cs" />
-    <Compile Include="Parser\ICommand.cs" />
     <Compile Include="ALU\ALUCommand.cs" />
     <Compile Include="ALU\AddCommand.cs" />
     <Compile Include="AddUCommand.cs" />

@@ -9,7 +9,7 @@ namespace RebuggerCS
 
 		private List<UInt32> stack;
 		private int stackPointer;
-		private StackFile instance;
+		private static StackFile instance;
 
 		private StackFile() {
 			this.stack = new List<UInt32> ();
@@ -18,7 +18,7 @@ namespace RebuggerCS
 
 		public static StackFile Instance
 		{ get { if (instance == null) {
-					instance = new SpecialRegisterFile(); }
+					instance = new StackFile(); }
 				return instance; }}
 			
 		public void changeStackPointer(int difference) {
@@ -105,8 +105,7 @@ namespace RebuggerCS
 			if (this.stackPointer % 4 == 0) {
 				value = (ushort) this.stack[this.stack.Count];
 			} else {
-				int end = this.stack.RemoveAt(this.stack.Count);
-				this.stack.Add (end);
+				int end = this.stack[this.stack.Count];
 				end >>= (16);
 				value = (ushort) end;
 			}
@@ -117,14 +116,13 @@ namespace RebuggerCS
 			if (this.stackPointer % 4 != 0) {
 				throw new StackException();
 			}
-			return this.stack.RemoveAt(this.stack.Count);
+			return this.stack[this.stack.Count];
 		}
 
 		public byte peekByte(int offset) {
 			int index = (this.stackPointer + offset);
 			index /= 4;
-			int tarGet = this.stack.RemoveAt(index);
-			this.stack.Insert (index, tarGet);
+			int tarGet = this.stack[index];
 			return (byte) (tarGet >> (8 * (index % 4)));
 		}
 
@@ -134,8 +132,7 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			int tarGet = this.stack.RemoveAt(index);
-			this.stack.Insert (index, tarGet);
+			int tarGet = this.stack[index];
 			return (ushort) (tarGet >> (16 * (index % 2)));
 		}
 
@@ -145,9 +142,7 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			int tarGet = this.stack.RemoveAt(index);
-			this.stack.Insert (index, tarGet);
-			return tarGet;
+			return this.stack[index];
 		}
 
 		public void setByte(int offset, byte data) {

@@ -9,9 +9,9 @@ namespace RebuggerCS
         private Dictionary<String, Int32> labels;
 		private Dictionary<String, Object> RO_Data;
 
-		Dictionary<String, ICommand> Rcommands = new Dictionary<String, ICommand> ();
-		Dictionary<String, ICommand> Jcommands = new Dictionary<String, ICommand> ();
-		Dictionary<String, ICommand> Icommands = new Dictionary<String, ICommand> ();
+		Dictionary<String, IALU> Rcommands = new Dictionary<String, IALU> ();
+		Dictionary<String, IALU> Jcommands = new Dictionary<String, IALU> ();
+		Dictionary<String, IALU> Icommands = new Dictionary<String, IALU> ();
 
         public InstructionMapper(Dictionary<String, Int32> label, Dictionary<String, Object> ROData)  {
             this.labels = label;
