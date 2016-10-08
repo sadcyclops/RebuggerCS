@@ -1,0 +1,13 @@
+﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCSharp/RegisterFile.cs">
+    <Files>
+      <File FileName="RebuggerCSharp/RegisterFile.cs" Line="33" Column="47" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.RebuggerCSharp PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
