@@ -35,6 +35,7 @@
     <Compile Include="ALU\IntALU.cs" />
     <Compile Include="Parser\FileParser.cs" />
     <Compile Include="Exceptions\ParserException.cs" />
+    <Compile Include="Parser\InstructionMapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

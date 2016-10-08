@@ -1,7 +1,9 @@
 ﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default" StartupItem="RebuggerCS/RebuggerCS.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCSharp/RegisterFile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCS/DataStructures/StackFile.cs">
     <Files>
-      <File FileName="RebuggerCSharp/RegisterFile.cs" Line="33" Column="47" />
+      <File FileName="RebuggerCS/Parser/FileParser.cs" Line="38" Column="42" />
+      <File FileName="RebuggerCS/Exceptions/ParserException.cs" Line="7" Column="96" />
+      <File FileName="RebuggerCS/DataStructures/StackFile.cs" Line="42" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
