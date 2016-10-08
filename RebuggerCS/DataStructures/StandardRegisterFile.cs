@@ -3,7 +3,7 @@ namespace RebuggerCS
 {
 	public class StandardRegisterFile : RegisterFile
 	{
-		public RegisterFile Instance
+		public static RegisterFile Instance
 		{
 			get
 			{
@@ -15,7 +15,7 @@ namespace RebuggerCS
 			}
 		}
 
-		private RegisterFile instance;
+		private static RegisterFile instance;
 		private StandardRegisterFile()
 		{
 			this.data = new uint[32];
