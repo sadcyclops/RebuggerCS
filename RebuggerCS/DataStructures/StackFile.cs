@@ -33,7 +33,7 @@ namespace RebuggerCS
 					}
 					this.stack.RemoveAt(this.stack.Count);
 				}
-				stackPointer -= difference;g
+				stackPointer -= difference;
 			}
 		}
 

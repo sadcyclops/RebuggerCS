@@ -36,6 +36,8 @@
     <Compile Include="Parser\FileParser.cs" />
     <Compile Include="Exceptions\ParserException.cs" />
     <Compile Include="Parser\InstructionMapper.cs" />
+    <Compile Include="Processor\Processor.cs" />
+    <Compile Include="Parser\ICommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -43,6 +45,7 @@
     <Folder Include="DataStructures\" />
     <Folder Include="ALU\" />
     <Folder Include="Parser\" />
+    <Folder Include="Processor\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

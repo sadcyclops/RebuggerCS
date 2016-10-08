@@ -8,6 +8,11 @@ namespace RebuggerCS
 	{
         private Dictionary<String, Int32> labels;
 		private Dictionary<String, Object> RO_Data;
+
+		Dictionary<String, ICommand> Rcommands = new Dictionary<String, ICommand> ();
+		Dictionary<String, ICommand> Jcommands = new Dictionary<String, ICommand> ();
+		Dictionary<String, ICommand> Icommands = new Dictionary<String, ICommand> ();
+
         public InstructionMapper(Dictionary<String, Int32> label, Dictionary<String, Object> ROData)  {
             this.labels = label;
             this.RO_Data = ROData;
@@ -42,7 +47,7 @@ namespace RebuggerCS
                 //remove the first offset
                 register = register.Remove(0,1);
                 return ParseRegister(register);
-            } else if (int.TryParse(argument))  {
+			} else if (Int32.TryParse(argument)){
                 return int.Parse(argument);
             } else {
                 if (labels.ContainsKey(argument))
@@ -57,18 +62,20 @@ namespace RebuggerCS
             if (register == "$at")
                 return 1;
             if (register.Contains("v")) 
-                return int.Parse(register[2]) + 1;
+				return Int32.Parse(register.Substring(2,1)) + 1;
             if (register.Contains("a"))
-                return int.Parse(register[2]) + 4;
+					return Int32.Parse(register.Substring(2,1)) + 4;
             if (register.Contains("t")) {
-                int regNum = int.Parse(register[2]);
+				int regNum = Int32.Parse(register.Substring(2,1));
                 return regNum > 7 ? regNum + 24 : regNum + 8;
             }
-                return int.Parse(register[2]) + 8;
+
+			//I'm pretty sure this line is wrong
+			return Int32.Parse(register.Substring(2,1)) + 8;
             if (register.Contains("s"))
-                return int.Parse(register[2]) + 16;
+				return Int32.Parse(register.Substring(2,1)) + 16;
             if (register.Contains("k"))
-                return int.Parse(register[2]) + 26;
+				return Int32.Parse(register.Substring(2,1)) + 26;
             if (register == "$gp")
                 return 28;
             if (register == "$sp")
