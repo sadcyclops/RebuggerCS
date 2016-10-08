@@ -9,12 +9,18 @@ namespace RebuggerCS
 
 		private List<UInt32> stack;
 		private int stackPointer;
+		private StackFile instance;
 
-		public StackFile() {
+		private StackFile() {
 			this.stack = new List<UInt32> ();
 			this.stackPointer = 64000;
 		}
 
+		public static StackFile Instance
+		{ get { if (instance == null) {
+					instance = new SpecialRegisterFile(); }
+				return instance; }}
+			
 		public void changeStackPointer(int difference) {
 			if (difference < 0) {
 				int someThing = stackPointer % 4;
@@ -82,9 +88,10 @@ namespace RebuggerCS
 				this.stack.RemoveAt (this.stack.Count);
 			} else {
 				uint end = this.stack[this.stack.Count];
-				this.stack.Add (end);
 				end >>= ((this.stackPointer - 1) << 3);
 				value = (byte) end;
+
+				this.stack.Add (end);
 			}
 			return value;
 		}
@@ -96,7 +103,7 @@ namespace RebuggerCS
 			ushort value;
 			this.stackPointer += 2;
 			if (this.stackPointer % 4 == 0) {
-				value = (ushort) this.stack.RemoveAt(this.stack.Count);
+				value = (ushort) this.stack[this.stack.Count];
 			} else {
 				int end = this.stack.RemoveAt(this.stack.Count);
 				this.stack.Add (end);
