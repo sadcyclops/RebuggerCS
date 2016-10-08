@@ -7,11 +7,11 @@ namespace RebuggerCS
 		{
 			get
 			{
-				if(instance==null)
+				if (instance == null)
 				{
 					instance = new StandardRegisterFile();
 				}
-					return instance;
+				return instance;
 			}
 		}
 
