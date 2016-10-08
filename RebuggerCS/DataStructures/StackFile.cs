@@ -44,7 +44,7 @@ namespace RebuggerCS
 			}
 		}
 
-		public void pushShort(short value) {
+		public void pushShort(ushort value) {
 
 			// Align
 			if (this.stackPointer % 2 == 1)
@@ -61,7 +61,7 @@ namespace RebuggerCS
 			}
 		}
 
-		public void pushInt(int value) {
+		public void pushInt(uint value) {
 
 			// Align
 			this.stackPointer -= this.stackPointer % 4;
@@ -82,18 +82,18 @@ namespace RebuggerCS
 			return value;
 		}
 
-		public short popShort() {
+		public ushort popShort() {
 			if (this.stackPointer % 2 != 0) {
 				throw new StackException();
 			}
-			short value;
+			ushort value;
 			this.stackPointer += 2;
 			if (this.stackPointer % 4 == 0) {
 				value = this.stack.remove(this.stack.size()).shortValue();
 			} else {
 				int end = this.stack.get(this.stack.size());
 				end >>= (16);
-				value = (short) end;
+				value = (ushort) end;
 			}
 			return value;
 		}
@@ -112,17 +112,17 @@ namespace RebuggerCS
 			return (byte) (target >> (8 * (index % 4)));
 		}
 
-		public short peekShort(int offset)  {
+		public ushort peekShort(int offset)  {
 			int index = (this.stackPointer + offset);
 			if (index % 2 != 0) {
 				throw new StackException();
 			}
 			index /= 4;
 			int target = this.stack.get(index);
-			return (short) (target >> (16 * (index % 2)));
+			return (ushort) (target >> (16 * (index % 2)));
 		}
 
-		public int peekInt(int offset) {
+		public uint peekInt(int offset) {
 			int index = (this.stackPointer + offset);
 			if (index % 4 != 0) {
 				throw new StackException();
@@ -140,7 +140,7 @@ namespace RebuggerCS
 			this.stack.set(temp_index, target);
 		}
 
-		public void setShort(int offset, short data) {
+		public void setShort(int offset, ushort data) {
 			int index = (this.stackPointer + offset);
 			if (index % 2 != 0) {
 				throw new StackException();
@@ -152,7 +152,7 @@ namespace RebuggerCS
 			this.stack.set(index, target);
 		}
 
-		public void setInt(int offset, int data) {
+		public void setInt(int offset, uint data) {
 			int index = (this.stackPointer + offset);
 			if (index % 4 != 0) {
 				throw new StackException();
