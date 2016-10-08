@@ -33,6 +33,8 @@
     <Compile Include="DataStructures\StackFile.cs" />
     <Compile Include="ALU\IALU.cs" />
     <Compile Include="ALU\IntALU.cs" />
+    <Compile Include="DataStructures\SpecialRegisterFile.cs" />
+    <Compile Include="DataStructures\StandardRegisterFile.cs" />
     <Compile Include="Parser\FileParser.cs" />
     <Compile Include="Exceptions\ParserException.cs" />
     <Compile Include="Parser\InstructionMapper.cs" />
