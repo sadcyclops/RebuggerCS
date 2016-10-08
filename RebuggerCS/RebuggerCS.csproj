@@ -33,15 +33,13 @@
     <Compile Include="DataStructures\RegisterFile.cs" />
     <Compile Include="DataStructures\StackFile.cs" />
     <Compile Include="ALU\IALU.cs" />
+    <Compile Include="ALU\IntALU.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="DataStructures\" />
     <Folder Include="ALU\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

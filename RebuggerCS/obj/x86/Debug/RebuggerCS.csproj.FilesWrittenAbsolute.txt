@@ -1,0 +1,1 @@
+/home/michael/workspace/RebuggerCS/RebuggerCS/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
