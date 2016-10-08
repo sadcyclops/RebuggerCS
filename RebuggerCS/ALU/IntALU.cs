@@ -4,6 +4,7 @@ namespace RebuggerCS
 {
 	public class IntALU : IALU
 {
+		RegisterFile special = SpecialRegisterFile.Instance;
 		public void Add(RegisterFile file, int rd, int rs, int rt) {
 			file.SetInt(rd,file.GetInt(rs)+file.GetInt(rt));	
 		}
@@ -25,8 +26,8 @@ namespace RebuggerCS
 			int s = file.GetInt(rs);
 			int lo = ((t * s) << 32) >> 32;
 			int hi = (s * t) >> 32;
-			file.SetInt(2, lo);
-			file.SetInt(3, hi);
+			special.SetInt(1, lo);
+			special.SetInt(2, hi);
 		}
 		
 		public void Multu(RegisterFile file, int rt, int rs) {
@@ -34,19 +35,18 @@ namespace RebuggerCS
 			uint s = file.GetUInt(rs);
 			uint lo = ((t * s) << 32) >> 32;
 			uint hi = (s * t) >> 32;
-			file.SetUInt(2, lo);
-			file.SetUInt(3, hi);
+			special.SetUInt(2, lo);
+			special.SetUInt(3, hi);
 
 		}
 
-		
 		public void Div(RegisterFile file, int rt, int rs) {
 			int t = file.GetInt(rt);
 			int s = file.GetInt(rs);
 			int lo = s / t;
 			int hi = s % t;
-			file.SetInt(2, lo);
-			file.SetInt(3, hi);
+			special.SetInt(2, lo);
+			special.SetInt(3, hi);
 		}
 
 		
@@ -55,8 +55,8 @@ namespace RebuggerCS
 			int s = file.GetInt(rs);
 			int lo = s / t;
 			int hi = s % t;
-			file.SetInt(2, lo);
-			file.SetInt(3, hi);
+			special.SetInt(2, lo);
+			special.SetInt(3, hi);
 		}
 
 		
@@ -123,8 +123,6 @@ namespace RebuggerCS
 				file.SetInt(rt, 1);
 			else
 				file.SetInt(rt, 0);
-
-
 		}
 
 		
@@ -145,20 +143,21 @@ namespace RebuggerCS
 
 		
 		public void Beq(RegisterFile file, int rs, int rt, int addr) {
-			// TODO Auto-generated method stub
+			if (file.GetInt(rs) == file.GetInt(rt))
+				special.SetInt(0, addr);
 
 		}
 
 		
 		public void Bne(RegisterFile file, int rs, int rt, int addr) {
-			// TODO Auto-generated method stub
+			if (file.GetInt(rs) != file.GetInt(rt))
+				special.SetInt(0, addr);
 
 		}
 
 		
-		public void J(RegisterFile file, int addr) {
-			// TODO Auto-generated method stub
-
+		public void J(int addr) {
+			special.SetInt(0,addr);
 		}
 
 		
