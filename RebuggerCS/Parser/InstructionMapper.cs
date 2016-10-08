@@ -19,16 +19,21 @@ namespace RebuggerCS
             //Get the instruction from the line object
             String instruction = line.RemoveAt(0);
 
+            int offset = -1;
             List<int> arguments = new List<int>();
             while (line.Count > 0)  {
-                arguments.add(ParseArgument(line.RemoveAt(0)));
+                arguments.add(ParseArgument(line.RemoveAt(0), out offset));
+                if (line.Count == 0 && offset > -1)
+                    arguments.add(offset);
+                else if (line.Count > 0 && offset > -1)
+                    throw new ParserException();
             }
 
             
 
         }
 
-        private Int ParseArgument(String argument, out offset) {
+        private Int32 ParseArgument(String argument, out offset) {
             //this is a regist
             if (argument[0] == '$') {
                 return ParseRegister(argument);
@@ -37,7 +42,9 @@ namespace RebuggerCS
                 //remove the parans around the register
                 String register = argument.Replace('(');
                 register = register.Replcae(')');
-                return 
+                //remove the first offset
+                register = register.Remove(0,1);
+                return ParseRegister(register);
             } else if (int.TryParse(argument))    {
                 return int.Parse(argument);
             } else {
@@ -47,7 +54,7 @@ namespace RebuggerCS
             throw new ParserException();
         }
 
-        private Int ParseRegister(String register)  {
+        private Int32 ParseRegister(String register)  {
             if (register == "$zero")    
                 return 0;
             if (register == "$at")
