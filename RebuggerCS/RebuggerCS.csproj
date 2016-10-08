@@ -27,13 +27,15 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="RegisterFile.cs" />
     <Compile Include="IALU.cs" />
     <Compile Include="Exceptions\StackException.cs" />
     <Compile Include="Exceptions\RegisterException.cs" />
+    <Compile Include="DataStructures\RegisterFile.cs" />
+    <Compile Include="DataStructures\StackFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Exceptions\" />
+    <Folder Include="DataStructures\" />
   </ItemGroup>
 </Project>
