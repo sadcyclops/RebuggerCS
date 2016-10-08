@@ -1,7 +1,9 @@
 ﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCSharp/RegisterFile.cs">
+  <MonoDevelop.Ide.ItemProperties.RebuggerCS PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCS/IALU.cs">
     <Files>
-      <File FileName="RebuggerCSharp/RegisterFile.cs" Line="33" Column="47" />
+      <File FileName="RebuggerCS/RegisterFile.cs" Line="51" Column="37" />
+      <File FileName="RebuggerCS/IALU.cs" Line="6" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

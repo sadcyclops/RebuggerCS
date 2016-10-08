@@ -1,5 +1,5 @@
 ﻿using System;
-namespace RebuggerCSharp
+namespace RebuggerCS
 {
 	public class RegisterFile
 	{
@@ -21,8 +21,8 @@ namespace RebuggerCSharp
 
 		public ushort getWord(int register, int position)
 		{
-		if(position > 3){ /*throw new RegisterException(); */}
-		return (ushort)(this.data[register] >> (position << 4));
+			if (position > 3) { /*throw new RegisterException(); */}
+			return (ushort)(this.data[register] >> (position << 4));
 		}
 
 		public uint getInt(int register)
@@ -32,25 +32,25 @@ namespace RebuggerCSharp
 
 		public void setByte(int register, int pos, uint value)
 		{
-			if(pos > 3){ /*throw new RegisterException(); */}
+			if (pos > 3) { /*throw new RegisterException(); */}
 			uint target = this.data[register];
 			target &= ~((BYTE << 8 * pos));
 			target += (value << (8 * pos));
-			this.data [register] = target;
+			this.data[register] = target;
 		}
 
-	public void setWord(int register, int pos, int value) throws RegisterException
-	{
-		if(pos > 2 || pos % 2 != 0){ throw new RegisterException(); }
-		int target = this.data [register];
-		target &= ~((WORD << pos*8));
-		target += (value << (8 * pos));
-		this.data [register] = target;
-	}
+		public void setWord(int register, int pos, uint value)
+		{
+			if(pos > 2 || pos % 2 != 0){ /*throw new RegisterException(); */}
+			uint target = this.data[register];
+			target &= ~((WORD << pos*8));
+			target += (value << (8 * pos));
+			this.data[register] = target;
+		}
 
-	public void setInt(int register, int value)
-	{
-		this.data[register] = value;
+		public void setInt(int register, uint value)
+		{
+			this.data[register] = value;
+		}
 	}
-}
 }
