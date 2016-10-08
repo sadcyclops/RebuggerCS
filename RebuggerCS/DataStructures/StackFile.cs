@@ -25,6 +25,7 @@ namespace RebuggerCS
 				}
 			} else {
 				while (difference >= 4) {
+					difference -= 4;
 					stackPointer += 4;
 					this.stack.remove(this.stack.size());
 				}
