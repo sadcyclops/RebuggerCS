@@ -9,9 +9,9 @@ namespace RebuggerCS
         private Dictionary<String, Int32> labels;
 		private Dictionary<String, Object> RO_Data;
 
-		Dictionary<String, ICommand> Rcommands = new Dictionary<String, ICommand> ();
-		Dictionary<String, ICommand> Jcommands = new Dictionary<String, ICommand> ();
-		Dictionary<String, ICommand> Icommands = new Dictionary<String, ICommand> ();
+		Dictionary<String, IALU> Rcommands = new Dictionary<String, IALU> ();
+		Dictionary<String, IALU> Jcommands = new Dictionary<String, IALU> ();
+		Dictionary<String, IALU> Icommands = new Dictionary<String, IALU> ();
 
         public InstructionMapper(Dictionary<String, Int32> label, Dictionary<String, Object> ROData)  {
             this.labels = label;
@@ -69,9 +69,6 @@ namespace RebuggerCS
 				int regNum = Int32.Parse(register.Substring(2,1));
                 return regNum > 7 ? regNum + 24 : regNum + 8;
             }
-
-			//I'm pretty sure this line is wrong
-			return Int32.Parse(register.Substring(2,1)) + 8;
             if (register.Contains("s"))
 				return Int32.Parse(register.Substring(2,1)) + 16;
             if (register.Contains("k"))
