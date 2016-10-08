@@ -26,8 +26,11 @@ namespace RebuggerCS
 					isText = block[i].Trim().Equals(".text");
 				}
 				else
-				{ 
-					if(block[i].)
+				{
+					if (rgx.IsMatch(this.block[i]))
+					{
+						labels.Add(block[i].Split(':')[0], i+1);
+					}
 				}
 			}
 		}
