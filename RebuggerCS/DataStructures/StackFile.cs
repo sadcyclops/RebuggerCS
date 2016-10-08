@@ -19,7 +19,7 @@ namespace RebuggerCS
 			if (difference < 0) {
 				int someThing = stackPointer % 4;
 				difference -= someThing;
-				stackPointer -= difference;
+				stackPointer += difference;
 				while (difference >= 0) {
 					this.stack.Add(0);
 					difference -= 4;
@@ -28,6 +28,9 @@ namespace RebuggerCS
 				while (difference >= 4) {
 					difference -= 4;
 					stackPointer += 4;
+					if(stackPointer >= 63997) {
+						throw new StackException();
+					}
 					this.stack.RemoveAt(this.stack.Count);
 				}
 				stackPointer -= difference;
@@ -40,7 +43,7 @@ namespace RebuggerCS
 				this.stack.Add((int) value);
 			} else {
 				int end = this.stack.RemoveAt(this.stack.Count);
-				value <<= ((stackPointer + 2 % 4) << 3);
+				value <<= (((stackPointer + 2) % 4) << 3); // previously stackPointer + 2 % 4 
 				end += value;
 				this.stack.Add(end);
 			}
@@ -49,16 +52,16 @@ namespace RebuggerCS
 		public void pushShort(ushort value) {
 
 			// Align
-			if (this.stackPointer % 2 == 1)
+			if (this.stackPointer % 2 == 1) {
 				this.stackPointer -= 1;
+			}
 
 			this.stackPointer -= 2;
 			if (stackPointer % 4 == 2) {
 				this.stack.Add((int) value);
 			} else {
 				int end = this.stack.RemoveAt(this.stack.Count);
-				value <<= 16;
-				end += value;
+				//removed end+= (value <<= 16)
 				this.stack.Add(end);
 			}
 		}
