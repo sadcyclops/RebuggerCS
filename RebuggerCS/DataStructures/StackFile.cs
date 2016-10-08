@@ -39,7 +39,7 @@ namespace RebuggerCS
 			if (stackPointer % 4 == 3) {
 				this.stack.Add((int) value);
 			} else {
-				int end = this.stack.Get(this.stack.Count);
+				int end = this.stack.RemoveAt(this.stack.Count);
 				value <<= ((stackPointer + 2 % 4) << 3);
 				end += value;
 				this.stack.Add(end);
@@ -56,7 +56,7 @@ namespace RebuggerCS
 			if (stackPointer % 4 == 2) {
 				this.stack.Add((int) value);
 			} else {
-				int end = this.stack.Get(this.stack.Count);
+				int end = this.stack.RemoveAt(this.stack.Count);
 				value <<= 16;
 				end += value;
 				this.stack.Add(end);
