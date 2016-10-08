@@ -7,7 +7,6 @@ namespace RebuggerCS
 		public const uint WORD = 65535;
 		protected uint[] data;
 
-
 		public byte GetByte(int register, int position)
 		{
 			if (position > 3) { throw new RegisterException(); }
