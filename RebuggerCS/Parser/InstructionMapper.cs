@@ -42,12 +42,13 @@ namespace RebuggerCS
             } else if (argument.Contains("(")) {
                 offset = argument[0];
                 //remove the parans around the register
-                String register = argument.Replace('(');
-                register = register.Replace(')');
+                String register = argument.Replace("(","");
+				register = register.Replace(")","");
                 //remove the first offset
                 register = register.Remove(0,1);
                 return ParseRegister(register);
-			} else if (Int32.TryParse(argument)){
+				int result;
+			} else if (Int32.TryParse(argument, result)) {
                 return int.Parse(argument);
             } else {
                 if (labels.ContainsKey(argument))

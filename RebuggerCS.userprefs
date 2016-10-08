@@ -1,10 +1,8 @@
-<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default">
-  <MonoDevelop.Ide.ItemProperties.RebuggerCS PreferredExecutionTarget="MonoDevelop.Default" />
+﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default" StartupItem="RebuggerCS/RebuggerCS.csproj">
   <MonoDevelop.Ide.Workbench ActiveDocument="RebuggerCS/ALU/IntALU.cs">
     <Files>
-      <File FileName="RebuggerCS/ALU/IntALU.cs" Line="41" Column="3" />
-      <File FileName="RebuggerCS/DataStructures/RegisterFile.cs" Line="8" Column="25" />
-      <File FileName="RebuggerCS/DataStructures/SpecialRegisterFile.cs" Line="20" Column="4" />
+      <File FileName="RebuggerCS/Parser/InstructionMapper.cs" Line="27" Column="29" />
+      <File FileName="RebuggerCS/ALU/IntALU.cs" Line="203" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
