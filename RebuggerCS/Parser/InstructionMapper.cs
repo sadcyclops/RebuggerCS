@@ -22,30 +22,27 @@ namespace RebuggerCS
             int offset = -1;
             List<int> arguments = new List<int>();
             while (line.Count > 0)  {
-                arguments.add(ParseArgument(line.RemoveAt(0), out offset));
+                arguments.Add(ParseArgument(line.RemoveAt(0), out offset));
                 if (line.Count == 0 && offset > -1)
-                    arguments.add(offset);
+                    arguments.Add(offset);
                 else if (line.Count > 0 && offset > -1)
                     throw new ParserException();
             }
-
-            
-
         }
 
-        private Int32 ParseArgument(String argument, out offset) {
+        private Int32 ParseArgument(String argument, out int offset) {
             //this is a regist
-            if (argument[0] == '$') {
+			if (argument.IndexOf ('$') == 0) {
                 return ParseRegister(argument);
             } else if (argument.Contains("(")) {
-                int offset = argument[0];
+                offset = argument[0];
                 //remove the parans around the register
                 String register = argument.Replace('(');
-                register = register.Replcae(')');
+                register = register.Replace(')');
                 //remove the first offset
                 register = register.Remove(0,1);
                 return ParseRegister(register);
-            } else if (int.TryParse(argument))    {
+            } else if (int.TryParse(argument))  {
                 return int.Parse(argument);
             } else {
                 if (labels.ContainsKey(argument))
