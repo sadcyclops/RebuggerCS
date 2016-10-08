@@ -237,46 +237,49 @@ namespace RebuggerCS
 
 		
 		public void Mfhi(RegisterFile file, int rd) {
-			file.SetInt(rd, special.GetInt(2));
+			// TODO Auto-generated method stub
+
 		}
 
 		
 		public void Mflo(RegisterFile file, int rd) {
-			file.SetInt(rd, special.GetInt(1));
+			// TODO Auto-generated method stub
+
 		}
 
 		
 		public void Sll(RegisterFile file, int rd, int rt, int immediate) {
-			file.SetUInt(rd, file.GetUInt(rt) << immediate);
+			// TODO Auto-generated method stub
 
 		}
 
 		
 		public void Srl(RegisterFile file, int rd, int rt, int immediate) {
-			file.SetUInt(rd, file.GetUInt(rt) >> immediate);
+			// TODO Auto-generated method stub
 
 		}
 
 		
 		public void Sra(RegisterFile file, int rd, int rt, int immediate) {
-			file.SetInt(rd, file.GetInt(rt) >> immediate);
+			// TODO Auto-generated method stub
+
 		}
 
 		
 		public void Sllv(RegisterFile file, int rd, int rt, int rs) {
-			file.SetInt(rd, file.GetInt(rt) << file.GetInt(rs));
+			// TODO Auto-generated method stub
 
 		}
 
 		
 		public void Srlv(RegisterFile file, int rd, int rt, int rs) {
-			file.SetUInt(rd, file.GetUInt(rt) >> file.GetInt(rs));
+			// TODO Auto-generated method stub
 
 		}
 
 		
 		public void Srav(RegisterFile file, int rd, int rt, int rs) {
-			file.SetInt(rd, file.GetInt(rt) >> file.GetInt(rs));
+			// TODO Auto-generated method stub
 
 		}
 	}
