@@ -13,7 +13,7 @@ namespace RebuggerCS
             this.RO_Data = ROData;
         }
 
-        public void MapInstruction(List<String> line) {
+        public void ExecuteInstruction(List<String> line) {
             if (line.Count == 0) return;
 
             //Get the instruction from the line object
