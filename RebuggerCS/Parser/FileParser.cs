@@ -13,6 +13,31 @@ namespace RebuggerCS
 		public FileParser(String[] input)
 		{
 			this.block = input;
+
+		}
+
+		public void ClearComments()	{
+			for (int i = 0; i < block.Length; i++)
+			{ block[i] = block[i].Split('#')[0]; }}
+
+		public void GetData()
+		{
+			Boolean isText = false;
+			Regex rgx = new Regex(@".*:.*");
+			for (int i = 0; i < block.Length; i++)
+			{
+				if (!isText)
+				{
+					isText = block[i].Trim().Equals(".text");
+				}
+				else
+				{
+					if (rgx.IsMatch(this.block[i]))
+					{
+						RO_Data.Add(block[i].Split(':')[0], i+1);
+					}
+				}
+			}
 		}
 
 		public void GetLabels()
@@ -34,9 +59,7 @@ namespace RebuggerCS
 				}
 			}
 		}
-		
-		public static String GetWordPrefix(String line)	{
-			return line.Split('#')[0];
-		}
+
+
 	}
 }

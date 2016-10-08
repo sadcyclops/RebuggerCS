@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RebuggerCS
 {
@@ -6,11 +7,11 @@ namespace RebuggerCS
 		const int BYTE = 255;
 		const int WORD = 65535;
 
-		private ArrayList<Integer> stack;
+		private List<Int32> stack;
 		private int stackPointer;
 
 		public StackFile() {
-			this.stack = new ArrayList<Integer>();
+			this.stack = new List<Int32> ();
 			this.stackPointer = 64000;
 		}
 
@@ -20,14 +21,14 @@ namespace RebuggerCS
 				difference -= someThing;
 				stackPointer -= difference;
 				while (difference >= 0) {
-					this.stack.add(0);
+					this.stack.Add(0);
 					difference -= 4;
 				}
 			} else {
 				while (difference >= 4) {
 					difference -= 4;
 					stackPointer += 4;
-					this.stack.remove(this.stack.size());
+					this.stack.RemoveAt(this.stack.Count);
 				}
 				stackPointer -= difference;
 			}
@@ -36,12 +37,12 @@ namespace RebuggerCS
 		public void pushByte(byte value) {
 			this.stackPointer -= 1;
 			if (stackPointer % 4 == 3) {
-				this.stack.add((int) value);
+				this.stack.Add((int) value);
 			} else {
-				int end = this.stack.get(this.stack.size());
+				int end = this.stack.Get(this.stack.Count);
 				value <<= ((stackPointer + 2 % 4) << 3);
 				end += value;
-				this.stack.add(end);
+				this.stack.Add(end);
 			}
 		}
 
@@ -53,12 +54,12 @@ namespace RebuggerCS
 
 			this.stackPointer -= 2;
 			if (stackPointer % 4 == 2) {
-				this.stack.add((int) value);
+				this.stack.Add((int) value);
 			} else {
-				int end = this.stack.get(this.stack.size());
+				int end = this.stack.Get(this.stack.Count);
 				value <<= 16;
 				end += value;
-				this.stack.add(end);
+				this.stack.Add(end);
 			}
 		}
 
@@ -67,16 +68,17 @@ namespace RebuggerCS
 			// Align
 			this.stackPointer -= this.stackPointer % 4;
 			this.stackPointer -= 4;
-			this.stack.add(value);
+			this.stack.Add(value);
 		}
 
 		public byte popByte() {
 			byte value;
 			this.stackPointer++;
 			if (this.stackPointer % 4 == 0) {
-				value = this.stack.remove(this.stack.size()).byteValue();
+				value = (byte) this.stack.RemoveAt(this.stack.Count);
 			} else {
-				int end = this.stack.get(this.stack.size());
+				int end = this.stack.RemoveAt(this.stack.Count);
+				this.stack.Add (end);
 				end >>= ((this.stackPointer - 1) << 3);
 				value = (byte) end;
 			}
@@ -90,9 +92,10 @@ namespace RebuggerCS
 			ushort value;
 			this.stackPointer += 2;
 			if (this.stackPointer % 4 == 0) {
-				value = this.stack.remove(this.stack.size()).shortValue();
+				value = (ushort) this.stack.RemoveAt(this.stack.Count);
 			} else {
-				int end = this.stack.get(this.stack.size());
+				int end = this.stack.RemoveAt(this.stack.Count);
+				this.stack.Add (end);
 				end >>= (16);
 				value = (ushort) end;
 			}
@@ -103,14 +106,15 @@ namespace RebuggerCS
 			if (this.stackPointer % 4 != 0) {
 				throw new StackException();
 			}
-			return this.stack.remove(this.stack.size());
+			return this.stack.RemoveAt(this.stack.Count);
 		}
 
 		public byte peekByte(int offset) {
 			int index = (this.stackPointer + offset);
 			index /= 4;
-			int target = this.stack.get(index);
-			return (byte) (target >> (8 * (index % 4)));
+			int tarGet = this.stack.RemoveAt(index);
+			this.stack.Insert (index, tarGet);
+			return (byte) (tarGet >> (8 * (index % 4)));
 		}
 
 		public ushort peekShort(int offset)  {
@@ -119,8 +123,9 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			int target = this.stack.get(index);
-			return (ushort) (target >> (16 * (index % 2)));
+			int tarGet = this.stack.RemoveAt(index);
+			this.stack.Insert (index, tarGet);
+			return (ushort) (tarGet >> (16 * (index % 2)));
 		}
 
 		public uint peekInt(int offset) {
@@ -129,16 +134,18 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			return this.stack.get(index);
+			int tarGet = this.stack.RemoveAt(index);
+			this.stack.Insert (index, tarGet);
+			return tarGet;
 		}
 
 		public void setByte(int offset, byte data) {
 			int index = (this.stackPointer + offset);
 			int temp_index = index/4;
-			int target = this.stack.get(temp_index);
-			target &= ~((BYTE) << index % 4);
-			target += (data << (8 * (index % 4)));
-			this.stack.set(temp_index, target);
+			int tarGet = this.stack.RemoveAt(temp_index);
+			tarGet &= ~((BYTE) << index % 4);
+			tarGet += (data << (8 * (index % 4)));
+			this.stack.Insert(temp_index, tarGet);
 		}
 
 		public void setShort(int offset, ushort data) {
@@ -147,10 +154,10 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			int target = this.stack.get(index);
-			target &= ~((WORD << (8*index)));
-			target += (data << (8*index));
-			this.stack.set(index, target);
+			int tarGet = this.stack.RemoveAt(index);
+			tarGet &= ~((WORD << (8*index)));
+			tarGet += (data << (8*index));
+			this.stack.Insert(index, tarGet);
 		}
 
 		public void setInt(int offset, uint data) {
@@ -159,7 +166,7 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			this.stack.set(index, data);
+			this.stack.Insert(index, data);
 		}
 	}
 
