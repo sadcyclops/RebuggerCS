@@ -4,8 +4,8 @@ using System.Collections.Generic;
 namespace RebuggerCS
 {
 	public class StackFile {
-		const int BYTE = 255;
-		const int WORD = 65535;
+		const uint BYTE = 255;
+		const uint WORD = 65535;
 
 		private List<UInt32> stack;
 		private int stackPointer;
@@ -105,14 +105,14 @@ namespace RebuggerCS
 			if (this.stackPointer % 4 == 0) {
 				value = (ushort) this.stack[this.stack.Count];
 			} else {
-				int end = this.stack[this.stack.Count];
+				uint end = this.stack[this.stack.Count];
 				end >>= (16);
 				value = (ushort) end;
 			}
 			return value;
 		}
 
-		public int popInt() {
+		public uint popInt() {
 			if (this.stackPointer % 4 != 0) {
 				throw new StackException();
 			}
@@ -122,7 +122,7 @@ namespace RebuggerCS
 		public byte peekByte(int offset) {
 			int index = (this.stackPointer + offset);
 			index /= 4;
-			int tarGet = this.stack[index];
+			uint tarGet = this.stack[index];
 			return (byte) (tarGet >> (8 * (index % 4)));
 		}
 
@@ -132,7 +132,7 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			int tarGet = this.stack[index];
+			uint tarGet = this.stack[index];
 			return (ushort) (tarGet >> (16 * (index % 2)));
 		}
 
@@ -148,10 +148,10 @@ namespace RebuggerCS
 		public void setByte(int offset, byte data) {
 			int index = (this.stackPointer + offset);
 			int temp_index = index/4;
-			int tarGet = this.stack.RemoveAt(temp_index);
+			uint tarGet = this.stack[temp_index];
 			tarGet &= ~((BYTE) << index % 4);
-			tarGet += (data << (8 * (index % 4)));
-			this.stack.Insert(temp_index, tarGet);
+			tarGet += (uint) (data << (8 * (index % 4)));
+			this.stack[temp_index] = tarGet;
 		}
 
 		public void setShort(int offset, ushort data) {
@@ -160,10 +160,10 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			int tarGet = this.stack.RemoveAt(index);
+			uint tarGet = this.stack[index];
 			tarGet &= ~((WORD << (8*index)));
-			tarGet += (data << (8*index));
-			this.stack.Insert(index, tarGet);
+			tarGet += (uint) (data << (8*index));
+			this.stack[index] = tarGet;
 		}
 
 		public void setInt(int offset, uint data) {
@@ -172,7 +172,7 @@ namespace RebuggerCS
 				throw new StackException();
 			}
 			index /= 4;
-			this.stack.Insert(index, data);
+			this.stack[index] = data;
 		}
 	}
 
