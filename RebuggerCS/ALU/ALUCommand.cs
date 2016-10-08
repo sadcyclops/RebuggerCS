@@ -7,9 +7,9 @@ namespace RebuggerCS
 {
 	public abstract class ALUCommand
 	{	
-		private RegisterFile standard;
-		private RegisterFile special;
-		void Execute();
+		protected RegisterFile file;
+		protected RegisterFile special;
+		abstract public void Execute();
 	}
 }
 

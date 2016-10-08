@@ -4,7 +4,7 @@ namespace RebuggerCS
 	public class SpecialRegisterFile : RegisterFile
 	{
 
-		public RegisterFile Instance
+		public static RegisterFile Instance
 		{
 			get
 			{
@@ -15,7 +15,7 @@ namespace RebuggerCS
 				return instance;
 			}
 		}
-		private RegisterFile instance;
+		private static RegisterFile instance;
 		private SpecialRegisterFile()
 		{
 			this.data = new uint[3];
