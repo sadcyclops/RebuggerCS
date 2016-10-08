@@ -1,7 +1,7 @@
 ﻿using System;
 namespace RebuggerCS
 {
-	 interface IALU
+	 public interface IALU
 	{
 		/*Arithmertic*/
 		void Add(RegisterFile file, int rd, int rs, int rt);

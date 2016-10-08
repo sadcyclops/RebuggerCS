@@ -34,5 +34,9 @@ namespace RebuggerCS
 				}
 			}
 		}
+		
+		public static String GetWordPrefix(String line)	{
+			return line.Split('#')[0];
+		}
 	}
 }
