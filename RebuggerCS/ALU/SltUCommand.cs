@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 namespace RebuggerCS
 {
-	public class SltCommand : ALUCommand
+	public class SltUCommand : ALUCommand
 	{
-		public SltCommand()
+		public SltUCommand()
 		{
 			file = StandardRegisterFile.Instance;
 			special = SpecialRegisterFile.Instance;
@@ -16,7 +16,6 @@ namespace RebuggerCS
 				file.SetInt(entries[0], 1);
 			else
 				file.SetInt(entries[0], 0);
-
 		}
 
 	}

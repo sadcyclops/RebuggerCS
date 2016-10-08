@@ -10,7 +10,7 @@ namespace RebuggerCS
 			special = SpecialRegisterFile.Instance;
 		}
 
-		public void Execute(String line, List<Int32> entries)
+		override public void Execute(List<Int32> entries)
 		{
 			file.SetInt(entries[0], (file.GetInt(entries[1]) | entries[2]));
 

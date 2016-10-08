@@ -9,7 +9,7 @@ namespace RebuggerCS
 			file = StandardRegisterFile.Instance;
 			special = SpecialRegisterFile.Instance;
 		}
-		public void MultU(String line, List<Int32> entries)
+		override public void Execute(List<Int32> entries)
 		{
 			uint t = file.GetUInt(entries[0]);
 			uint s = file.GetUInt(entries[1]);
