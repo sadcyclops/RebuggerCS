@@ -67,11 +67,8 @@ namespace RebuggerCS
 
 		public void ExecuteCode()
 		{
-			while ((!breaks.Contains(gpRegisters.GetInt(0)) && !stopSignal) || continueSignal)
+			for (int i = 0; i < codeArray.Length; i++)
 			{
-				if (breaks.Contains(gpRegisters.GetInt(0))) { continueSignal = false;}
-				if (!stopSignal) { stopSignal = true;}
-				//mapper.ExecuteInstruction();
 				mapper.ExecuteInstruction(codeArray[gpRegisters.GetInt(0)]);
 			}
 		}
