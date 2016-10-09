@@ -23,11 +23,11 @@ namespace RebuggerCS
 		private Boolean continueSignal;
 
 		//Properties
-		public StandardRegisterFile GPRegisters { private set {} public get {return this.gpRegisters;}}
-		public SpecialRegisterFile SRegisters { private set {} public get {return this.sRegisters;}}
-		public StackFile Stack { private set {} public get {return this.stack;}}
-		public Int32 Line { private set {} public get {return this.line;}}
-		public List<Int32> Breaks { private set {} public get {return this.breaks;}}
+		public StandardRegisterFile GPRegisters { get {return this.gpRegisters;}}
+		public SpecialRegisterFile SRegisters { get {return this.sRegisters;}}
+		public StackFile Stack { get {return this.stack;}}
+		public Int32 Line { get {return this.line;}}
+		public List<Int32> Breaks { get {return this.breaks;}}
 
 		public Processor ()
 		{
