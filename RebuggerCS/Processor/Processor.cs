@@ -57,6 +57,8 @@ namespace RebuggerCS
 				mapper.ExecuteInstruction();
 			}
 		}
+
+		/*TODO Add the serializer code*/
 	}
 }
 
