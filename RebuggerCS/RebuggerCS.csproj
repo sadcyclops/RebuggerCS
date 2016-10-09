@@ -54,12 +54,35 @@
     <Compile Include="ALU\OrCommand.cs" />
     <Compile Include="ALU\OrICommand.cs" />
     <Compile Include="ALU\SltCommand.cs" />
-    <Compile Include="ALU\SltICommand.cs" />
-    <Compile Include="ALU\SltIUCommand.cs" />
+    <Compile Include="ALU\SltiCommand.cs" />
+    <Compile Include="ALU\SltiuCommand.cs" />
     <Compile Include="ALU\SubCommand.cs" />
     <Compile Include="ALU\SubUCommand.cs" />
     <Compile Include="ALU\XorCommand.cs" />
     <Compile Include="ALU\XorICommand.cs" />
+    <Compile Include="ALU\BeqCommands.cs" />
+    <Compile Include="ALU\BneCommand.cs" />
+    <Compile Include="ALU\JCommand.cs" />
+    <Compile Include="ALU\JalCommand.cs" />
+    <Compile Include="ALU\JrCommand.cs" />
+    <Compile Include="ALU\LbuCommand.cs" />
+    <Compile Include="ALU\LhuCommand.cs" />
+    <Compile Include="ALU\LbCommand.cs" />
+    <Compile Include="ALU\LhCommand.cs" />
+    <Compile Include="ALU\LuiCommand.cs" />
+    <Compile Include="ALU\LwCommand.cs" />
+    <Compile Include="ALU\SbCommand.cs" />
+    <Compile Include="ALU\ShCommand.cs" />
+    <Compile Include="ALU\SwCommand.cs" />
+    <Compile Include="ALU\MfhiCommand.cs" />
+    <Compile Include="ALU\MfloCommand.cs" />
+    <Compile Include="ALU\SllCommand.cs" />
+    <Compile Include="ALU\SrlCommand.cs" />
+    <Compile Include="ALU\SraCommand.cs" />
+    <Compile Include="ALU\SllvCommand.cs" />
+    <Compile Include="ALU\SrlvCommand.cs" />
+    <Compile Include="ALU\SravCommand.cs" />
+    <Compile Include="ALU\StluCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
