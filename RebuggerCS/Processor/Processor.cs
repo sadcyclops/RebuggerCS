@@ -21,13 +21,14 @@ namespace RebuggerCS
 		private List<Int32> breaks;
 
 		private Boolean continueSignal;
+		private Boolean stopSignal;
 
 		//Properties
-		public StandardRegisterFile GPRegisters { private set {} public get {return this.gpRegisters;}}
-		public SpecialRegisterFile SRegisters { private set {} public get {return this.sRegisters;}}
-		public StackFile Stack { private set {} public get {return this.stack;}}
-		public Int32 Line { private set {} public get {return this.line;}}
-		public List<Int32> Breaks { private set {} public get {return this.breaks;}}
+		public StandardRegisterFile GPRegisters { get {return this.gpRegisters;}}
+		public SpecialRegisterFile SRegisters { get {return this.sRegisters;}}
+		public StackFile Stack { get {return this.stack;}}
+		public Int32 Line { get {return this.line;}}
+		public List<Int32> Breaks { get {return this.breaks;}}
 
 		public Processor ()
 		{
@@ -56,11 +57,18 @@ namespace RebuggerCS
 			continueSignal = true;
 		}
 
+		//Called to step
+		public void RecieveStopSignal()
+		{
+			stopSignal = false;
+		}
+
 		public void ExecuteCode()
 		{
-			while (!breaks.Contains(line)||continueSignal)
+			while ((!breaks.Contains(line) && !stopSignal) || continueSignal)
 			{
-				if (continueSignal) { continueSignal = false;}
+				if (breaks.Contains(line)) { continueSignal = false;}
+				if (!stopSignal) { stopSignal = true;}
 				mapper.ExecuteInstruction();
 			}
 		}
