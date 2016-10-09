@@ -11,15 +11,10 @@ namespace RebuggerCS
 		private int stackPointer;
 		private static StackFile instance;
 
-		private StackFile() {
+		public StackFile() {
 			this.stack = new List<UInt32> ();
 			this.stackPointer = 64000;
 		}
-
-		public static StackFile Instance
-		{ get { if (instance == null) {
-					instance = new StackFile(); }
-				return instance; }}
 			
 		public void changeStackPointer(int difference) {
 			if (difference < 0) {

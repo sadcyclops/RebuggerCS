@@ -7,20 +7,25 @@ namespace RebuggerCS
 		public const uint WORD = 65535;
 		protected uint[] data;
 
+		/*	All accesors forced to return 0 from register 0.
+			No other restructions applied as is MIPS standard*/
 		public byte GetByte(int register, int position)
 		{
 			if (position > 3) { throw new RegisterException(); }
+			if (register == 0) { return (byte)0; }
 			return (byte)(this.data[register] >> (position << 3));
 		}
 
 		public ushort GetWord(int register, int position)
 		{
 			if (position > 3) { throw new RegisterException(); }
+			if (register == 0) { return (ushort)0; }
 			return (ushort)(this.data[register] >> (position << 4));
 		}
 
 		public uint GetUInt(int register)
 		{
+			if (register == 0) { return (uint) 0; }
 			return this.data[register];
 		}
 

@@ -8,7 +8,7 @@ namespace RebuggerCS
 	{
 		private String[] block;
 		private Dictionary<String, Int32> labels;
-		private Dictionary<String, Object> RO_Data;
+		private Dictionary<String, Object> ROData;
 
 		public FileParser(String[] input)
 		{
@@ -16,9 +16,14 @@ namespace RebuggerCS
 
 		}
 
-		public void ClearComments()	{
+		public Dictionary<String, Int32> Labels { get { return labels; } }
+		public Dictionary<String, Object> RO_Data { get { return ROData; } }
+
+		public void ClearComments()
+		{
 			for (int i = 0; i < block.Length; i++)
-			{ block[i] = block[i].Split('#')[0]; }}
+			{ block[i] = block[i].Split('#')[0]; }
+		}
 
 		public void GetData()
 		{
@@ -34,8 +39,12 @@ namespace RebuggerCS
 				{
 					if (rgx.IsMatch(this.block[i]))
 					{
-						String[] things = block [i].Split (':');
-						RO_Data.Add(things[0], things[1]); }}}}
+						String[] things = block[i].Split(':');
+						ROData.Add(things[0], things[1]);
+					}
+				}
+			}
+		}
 
 		public void GetLabels()
 		{
@@ -51,9 +60,17 @@ namespace RebuggerCS
 				{
 					if (rgx.IsMatch(this.block[i]))
 					{
-						labels.Add(block[i].Split(':')[0], i+1); }}}}
+						labels.Add(block[i].Split(':')[0], i + 1);
+					}
+				}
+			}
+		}
 
-		public void parse() {
-			this.ClearComments ();
-			this.GetData ();
-			this.GetLabels (); }}}
+		public void parse()
+		{
+			this.ClearComments();
+			this.GetData();
+			this.GetLabels();
+		}
+	}
+}
