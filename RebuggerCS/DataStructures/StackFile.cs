@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace RebuggerCS
@@ -23,9 +23,9 @@ namespace RebuggerCS
 				int someThing = this.sReg.GetSP() % 4;
 				difference -= someThing;
 				this.sReg.AlterSP(difference);
-				while (difference >= 0) {
+				while (difference <= 0) {
 					this.stack.Add(0);
-					difference -= 4;
+					difference += 4;
 				}
 			} else {
 				while (difference >= 4) {
@@ -118,8 +118,10 @@ namespace RebuggerCS
 
 		public byte peekByte(int offset) {
 			int index = (this.sReg.GetSP() + offset);
-			index /= 4;
-			uint tarGet = this.stack[index];
+			int temp_index = (64000 - index)/4;
+			if (index % 4 == 0)
+				temp_index--;
+			uint tarGet = this.stack[temp_index];
 			return (byte) (tarGet >> (8 * (index % 4)));
 		}
 
@@ -128,7 +130,12 @@ namespace RebuggerCS
 			if (index % 2 != 0) {
 				throw new StackException();
 			}
+			int adjustment = index % 4;
+			index = 64000 - index;
 			index /= 4;
+			if (adjustment == 0) {
+				index--;
+			}
 			uint tarGet = this.stack[index];
 			return (ushort) (tarGet >> (16 * (index % 2)));
 		}
@@ -138,13 +145,17 @@ namespace RebuggerCS
 			if (index % 4 != 0) {
 				throw new StackException();
 			}
+			index = 64000 - index;
 			index /= 4;
+			index--;
 			return this.stack[index];
 		}
 
 		public void setByte(int offset, byte data) {
 			int index = (this.sReg.GetSP() + offset);
-			int temp_index = index/4;
+			int temp_index = (64000 - index)/4;
+			if (index % 4 == 0)
+				temp_index--;
 			uint tarGet = this.stack[temp_index];
 			tarGet &= ~((BYTE) << index % 4);
 			tarGet += (uint) (data << (8 * (index % 4)));
@@ -156,10 +167,15 @@ namespace RebuggerCS
 			if (index % 2 != 0) {
 				throw new StackException();
 			}
+			int adjustment = index % 4;
+			index = 64000 - index;
 			index /= 4;
+			if (adjustment == 0) {
+				index--;
+			}
 			uint tarGet = this.stack[index];
-			tarGet &= ~((WORD << (8*index)));
-			tarGet += (uint) (data << (8*index));
+			tarGet &= ~((WORD << (8*adjustment)));
+			tarGet += (uint) (data << (8*adjustment));
 			this.stack[index] = tarGet;
 		}
 
@@ -168,7 +184,9 @@ namespace RebuggerCS
 			if (index % 4 != 0) {
 				throw new StackException();
 			}
+			index = 64000 - index;
 			index /= 4;
+			index--;
 			this.stack[index] = data;
 		}
 	}
