@@ -9,7 +9,7 @@ namespace RebuggerCS
 		override public void Execute(List<Int32> entries)
 		{
 			int value = stack.peekShort(file.GetInt(entries[1]) + entries[2]);
-			file.SetWord(entries[0], 0, value);
+			file.SetWord(entries[0], 0, (uint)value);
 			if ((value & 32768) == 65536)
 				file.SetWord(entries[0], 1, 65535);
 			else

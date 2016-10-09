@@ -54,8 +54,8 @@
     <Compile Include="ALU\OrCommand.cs" />
     <Compile Include="ALU\OrICommand.cs" />
     <Compile Include="ALU\SltCommand.cs" />
-    <Compile Include="ALU\SltICommand.cs" />
-    <Compile Include="ALU\SltIUCommand.cs" />
+    <Compile Include="ALU\SltiCommand.cs" />
+    <Compile Include="ALU\SltiuCommand.cs" />
     <Compile Include="ALU\SubCommand.cs" />
     <Compile Include="ALU\SubUCommand.cs" />
     <Compile Include="ALU\XorCommand.cs" />
@@ -82,6 +82,7 @@
     <Compile Include="ALU\SllvCommand.cs" />
     <Compile Include="ALU\SrlvCommand.cs" />
     <Compile Include="ALU\SravCommand.cs" />
+    <Compile Include="ALU\StluCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
