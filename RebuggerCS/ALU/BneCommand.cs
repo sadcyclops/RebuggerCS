@@ -4,7 +4,7 @@ namespace RebuggerCS
 {
 	public class BneCommand : ALUCommand
 	{
-		public BneCommand(RegisterFile file, RegisterFile special, StackFile stack) : base(file, special, stack) { }
+		public BneCommand(StandardRegisterFile file, SpecialRegisterFile special, StackFile stack) : base(file, special, stack) { }
 
 		override public void Execute(List<Int32> entries)
 		{

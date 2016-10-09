@@ -7,10 +7,10 @@ namespace RebuggerCS
 {
 	public abstract class ALUCommand
 	{	
-		protected RegisterFile file;
-		protected RegisterFile special;
+		protected StandardRegisterFile file;
+		protected SpecialRegisterFile special;
 		protected StackFile stack;
-		public ALUCommand(RegisterFile parFile, RegisterFile parSpecial, StackFile parStack)
+		public ALUCommand(StandardRegisterFile parFile, SpecialRegisterFile parSpecial, StackFile parStack)
 		{
 			file = parFile;
 			stack = parStack;

@@ -37,7 +37,7 @@ namespace RebuggerCS
             int offset = -1;
             List<int> arguments = new List<int>();
             while (line.Count > 0)  {
-                arguments.Add(ParseArgument(line[0], offset));
+                arguments.Add(ParseArgument(line[0], ref offset));
 				line.RemoveAt(0);
                 if (line.Count == 0 && offset > -1)
                     arguments.Add(offset);
@@ -56,19 +56,15 @@ namespace RebuggerCS
 			}
         }
 
-        private Int32 ParseArgument(String argument, int offset) {
+        private Int32 ParseArgument(String argument, ref int offset) {
             //this is a regist
 			int result = 0;
 			if (argument.IndexOf ('$') == 0) {
                 return ParseRegister(argument);
             } else if (argument.Contains("(")) {
-                offset = argument[0];
-                //remove the parans around the register
-                String register = argument.Replace("(","");
-				register = register.Replace(")","");
-                //remove the first offset
-                register = register.Remove(0,1);
-                return ParseRegister(register);
+				String[] parts = Regex.Split(argument,"[()]");
+				offset = Int32.Parse(parts[0]);
+                return ParseRegister(parts[1]);
 			} else if (Int32.TryParse(argument, out result)) {
                 return int.Parse(argument);
             } else {
@@ -91,14 +87,14 @@ namespace RebuggerCS
 				int regNum = Int32.Parse(register.Substring(2,1));
                 return regNum > 7 ? regNum + 24 : regNum + 8;
             }
+			if (register == "$sp")
+				return 29;
             if (register.Contains("s"))
 				return Int32.Parse(register.Substring(2,1)) + 16;
             if (register.Contains("k"))
 				return Int32.Parse(register.Substring(2,1)) + 26;
             if (register == "$gp")
                 return 28;
-            if (register == "$sp")
-                return 29;
             if (register == "$fp")
                 return 30;
             if (register == "$ra")

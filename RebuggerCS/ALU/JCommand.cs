@@ -4,7 +4,7 @@ namespace RebuggerCS
 {
 	public class JCommand : ALUCommand
 	{
-		public JCommand(RegisterFile file, RegisterFile special, StackFile stack) : base(file, special, stack) { }
+		public JCommand(StandardRegisterFile file, SpecialRegisterFile special, StackFile stack) : base(file, special, stack) { }
 
 		override public void Execute(List<Int32> entries)
 		{

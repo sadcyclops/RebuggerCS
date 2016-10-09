@@ -4,7 +4,7 @@ namespace RebuggerCS
 {
 	public class SltiCommand : ALUCommand
 	{
-		public SltiCommand(RegisterFile file, RegisterFile special, StackFile stack) : base(file, special, stack) { }
+		public SltiCommand(StandardRegisterFile file, SpecialRegisterFile special, StackFile stack) : base(file, special, stack) { }
 
 		override public void Execute(List<Int32> entries)
 		{

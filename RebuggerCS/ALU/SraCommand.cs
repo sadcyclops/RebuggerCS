@@ -4,7 +4,7 @@ namespace RebuggerCS
 {
 	public class SraCommand : ALUCommand
 	{
-		public SraCommand(RegisterFile file, RegisterFile special, StackFile stack) : base(file, special, stack) { }
+		public SraCommand(StandardRegisterFile file, SpecialRegisterFile special, StackFile stack) : base(file, special, stack) { }
 
 		override public void Execute(List<Int32> entries)
 		{

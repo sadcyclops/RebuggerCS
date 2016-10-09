@@ -11,7 +11,7 @@ namespace RebuggerCS
 		private SpecialRegisterFile sRegisters;
 		//Stack
 		private StackFile stack;
-		private String[] codeArray;
+		public String[] codeArray;
 
 		/*I don't know what of these we need, I haven't totally read through them yet*/
 		private FileParser parser;
@@ -33,9 +33,10 @@ namespace RebuggerCS
 
 		public Processor ()
 		{
-			gpRegisters = new StandardRegisterFile();
+			stack = new StackFile();
+			gpRegisters = new StandardRegisterFile(stack);
 			sRegisters = new SpecialRegisterFile();
-			stack = new StackFile(gpRegisters);
+
 			line = 0;
 			continueSignal = false;
 		}

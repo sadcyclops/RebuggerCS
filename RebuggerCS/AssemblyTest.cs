@@ -6,11 +6,12 @@ namespace RebuggerCS
 		static void Main()
 		{
 			Processor temp = new Processor();
-			String[] sa = { "addi $t0 $t0 12", "addi $t1 $t1 15", "add $t2 $t1 $t0" };
+			String[] sa = { "addi $t1 $t1 100000","addi $t0 $t0 100", "bne $t1 $t0 1", "j 100"};
 			Int32[] sp = new Int32[0];
 			temp.RecieveCode(sa, sp);
 			temp.ProcessCode();
-			temp.mapper.ExecuteInstruction(sa[0]);
+			for (int i = 0; i < 1000000; i++)
+				temp.mapper.ExecuteInstruction(sa[temp.SRegisters.GetInt(0)]);
 			Console.Read();
 		}
 

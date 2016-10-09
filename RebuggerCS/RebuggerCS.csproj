@@ -29,10 +29,9 @@
   <ItemGroup>
     <Compile Include="Exceptions\StackException.cs" />
     <Compile Include="Exceptions\RegisterException.cs" />
-    <Compile Include="DataStructures\RegisterFile.cs" />
+    <Compile Include="DataStructures\StandardRegisterFile.cs" />
     <Compile Include="DataStructures\StackFile.cs" />
     <Compile Include="DataStructures\SpecialRegisterFile.cs" />
-    <Compile Include="DataStructures\StandardRegisterFile.cs" />
     <Compile Include="Parser\FileParser.cs" />
     <Compile Include="Exceptions\ParserException.cs" />
     <Compile Include="Parser\InstructionMapper.cs" />

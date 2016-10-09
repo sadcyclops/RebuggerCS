@@ -4,7 +4,7 @@ namespace RebuggerCS
 {
 	public class ShCommand : ALUCommand
 	{
-		public ShCommand(RegisterFile file, RegisterFile special, StackFile stack) : base(file, special, stack) { }
+		public ShCommand(StandardRegisterFile file, SpecialRegisterFile special, StackFile stack) : base(file, special, stack) { }
 
 		override public void Execute(List<Int32> entries)
 		{

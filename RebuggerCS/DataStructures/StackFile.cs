@@ -9,20 +9,19 @@ namespace RebuggerCS
 		const uint WORD = 65535;
 
 		private List<UInt32> stack;
-		private StandardRegisterFile sReg;
-
 		public List<UInt32> Stack { get {return stack;}}
-		public StackFile(StandardRegisterFile file) {
+		public int StackPointer { get { return stackPointer;} }
+		private int stackPointer;
+		public StackFile() {
 			this.stack = new List<UInt32> ();
-			this.sReg = file;
-			this.sReg.AlterSP(64000);
+			stackPointer = 64000;
 		}
 			
 		public void changeStackPointer(int difference) {
 			if (difference < 0) {
-				int someThing = this.sReg.GetSP() % 4;
+				int someThing = this.stackPointer % 4;
 				difference -= someThing;
-				this.sReg.AlterSP(difference);
+				this.stackPointer += difference;
 				while (difference <= 0) {
 					this.stack.Add(0);
 					difference += 4;
@@ -30,94 +29,20 @@ namespace RebuggerCS
 			} else {
 				while (difference >= 4) {
 					difference -= 4;
-					this.sReg.AlterSP(4);
-					if(this.sReg.GetSP() >= 63997) {
+					this.stackPointer += 4;
+					if(this.StackPointer >= 63997) {
 						throw new StackException();
 					}
 					this.stack.RemoveAt(this.stack.Count);
 				}
-				this.sReg.AlterSP(-difference);
+				this.stackPointer -= difference;
 			}
 		}
 
-		public void pushByte(byte value) {
-			this.sReg.AlterSP(-1);
-			if (this.sReg.GetSP() % 4 == 3) {
-				this.stack.Add((uint) value);
-			} else {
-				uint end = this.stack[this.stack.Count];
-				value <<= (((this.sReg.GetSP()+2 % 4) << 3)); // previously stackPointer + 2 % 4 
-				end += value;
-				this.stack[this.stack.Count] = end;
-			}
-		}
 
-		public void pushShort(ushort value) {
-
-			// Align
-			if (this.sReg.GetSP() % 2 == 1) {
-				this.sReg.AlterSP(-1);
-			}
-			this.sReg.AlterSP(-2);
-			if (this.sReg.GetSP() % 4 == 2) {
-				this.stack.Add((uint) value);
-			} else {
-				uint end = this.stack[this.stack.Count];
-				end += ((uint) value << 16);
-				this.stack [this.stack.Count] = end;
-			}
-		}
-
-		public void pushInt(uint value) {
-
-			// Align
-			this.sReg.AlterSP(-(this.sReg.GetSP() % 4));
-			this.sReg.AlterSP(-4);
-			this.stack.Add(value);
-		}
-
-		public byte popByte() {
-			byte value;
-			this.sReg.AlterSP(1);
-			if (this.sReg.GetSP() % 4 == 0) {
-				value = (byte) this.stack[this.stack.Count];
-				this.stack.RemoveAt (this.stack.Count);
-			} else {
-				uint end = this.stack[this.stack.Count];
-				end >>= ((this.sReg.GetSP() - 1) << 3);
-				value = (byte) end;
-				end &= ~((BYTE) << (this.sReg.GetSP() - 1) % 4);
-				this.stack.Add (end);
-			}
-			return value;
-		}
-
-		public ushort popShort() {
-			if (this.sReg.GetSP() % 2 != 0) {
-				throw new StackException();
-			}
-			ushort value;
-			this.sReg.AlterSP(2);
-			if (this.sReg.GetSP() % 4 == 0) {
-				value = (ushort) this.stack[this.stack.Count];
-			} else {
-				uint end = this.stack[this.stack.Count];
-				end >>= (16);
-				value = (ushort) end;
-				this.stack[this.stack.Count] &= ~((WORD << (16)));
-			}
-			return value;
-		}
-
-		public uint popInt() {
-			if (this.sReg.GetSP() % 4 != 0) {
-				throw new StackException();
-			}
-			return this.stack[this.stack.Count];
-		}
 
 		public byte peekByte(int offset) {
-			int index = (this.sReg.GetSP() + offset);
+			int index = offset;
 			int temp_index = (64000 - index)/4;
 			if (index % 4 == 0)
 				temp_index--;
@@ -126,7 +51,7 @@ namespace RebuggerCS
 		}
 
 		public ushort peekShort(int offset)  {
-			int index = (this.sReg.GetSP() + offset);
+			int index = offset;
 			if (index % 2 != 0) {
 				throw new StackException();
 			}
@@ -141,7 +66,7 @@ namespace RebuggerCS
 		}
 
 		public uint peekInt(int offset) {
-			int index = (this.sReg.GetSP() + offset);
+			int index = offset;
 			if (index % 4 != 0) {
 				throw new StackException();
 			}
@@ -152,7 +77,7 @@ namespace RebuggerCS
 		}
 
 		public void setByte(int offset, byte data) {
-			int index = (this.sReg.GetSP() + offset);
+			int index = offset;
 			int temp_index = (64000 - index)/4;
 			if (index % 4 == 0)
 				temp_index--;
@@ -163,7 +88,7 @@ namespace RebuggerCS
 		}
 
 		public void setShort(int offset, ushort data) {
-			int index = (this.sReg.GetSP() + offset);
+			int index = offset;
 			if (index % 2 != 0) {
 				throw new StackException();
 			}
@@ -180,14 +105,13 @@ namespace RebuggerCS
 		}
 
 		public void setInt(int offset, uint data) {
-			int index = (this.sReg.GetSP() + offset);
-			if (index % 4 != 0) {
+			if (offset % 4 != 0) {
 				throw new StackException();
 			}
-			index = 64000 - index;
-			index /= 4;
-			index--;
-			this.stack[index] = data;
+			offset = 64000 - offset;
+			offset /= 4;
+			offset--;
+			this.stack[offset] = data;
 		}
 	}
 
