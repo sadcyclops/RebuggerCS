@@ -17,8 +17,6 @@ namespace RebuggerCS
 		private FileParser parser;
 		public InstructionMapper mapper;
 
-		//Keeps track of current line in code;
-		private Int32 line;
 		private List<Int32> breaks;
 
 		private Boolean continueSignal;
@@ -36,9 +34,17 @@ namespace RebuggerCS
 			stack = new StackFile();
 			gpRegisters = new StandardRegisterFile(stack);
 			sRegisters = new SpecialRegisterFile();
-
-			line = 0;
 			continueSignal = false;
+			stopSignal = false;
+		}
+
+		public Processor(StandardRegisterFile pfile, SpecialRegisterFile pspecial, StackFile pstack)
+		{
+			gpRegisters = pfile;
+			sRegisters = pspecial;
+			stack = pstack;
+			continueSignal = false;
+			stopSignal = false;
 		}
 
 		public void RecieveCode(String[] code, Int32[] stopPoints)
@@ -54,23 +60,13 @@ namespace RebuggerCS
 			mapper = new InstructionMapper(parser.Labels, parser.RO_Data, gpRegisters, sRegisters, stack);
         }
 
-		//Called to continue after break
-		public void RecieveContinueSignal()
-		{
-			continueSignal = true;
-		}
-
-		//Called to step
-		public void RecieveStopSignal()
-		{
-			stopSignal = false;
-		}
 
 		public void ExecuteCode()
 		{
-			for (int i = 0; i < 100000; i++)
+			int index = sRegisters.GetInt(0);				
+			if (index < codeArray.Length)
 			{
-				mapper.ExecuteInstruction(codeArray[sRegisters.GetInt(0)]);
+				mapper.ExecuteInstruction(codeArray[index]);				
 			}
 		}
 
