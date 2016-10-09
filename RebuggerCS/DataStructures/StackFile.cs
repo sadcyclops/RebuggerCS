@@ -46,7 +46,7 @@ namespace RebuggerCS
 				this.stack.Add((uint) value);
 			} else {
 				uint end = this.stack[this.stack.Count];
-				value <<= (((this.sReg.GetSP()+2 % 4) << 3); // previously stackPointer + 2 % 4 
+				value <<= (((this.sReg.GetSP()+2 % 4) << 3)); // previously stackPointer + 2 % 4 
 				end += value;
 				this.stack[this.stack.Count] = end;
 			}
