@@ -212,16 +212,6 @@ namespace RebuggerCS
 
 		}
 
-
-		//Leaving out because not fully documented and confusing
-		//Also missing syster command sc
-		public void Ll(RegisterFile file, StackFile stack, int rt, int rs, int offset)
-		{
-			// TODO Auto-generated method stub
-
-		}
-
-
 		public void Lb(RegisterFile file, StackFile stack, int rt, int rs, int offset)
 		{
 			file.SetByte(rt, 0, stack.peekByte(file.GetInt(rs) + offset));
