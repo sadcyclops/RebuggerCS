@@ -6,7 +6,7 @@ namespace RebuggerCS
 {
 	public class FileParser
 	{
-		private String[] block;
+		public String[] block;
 		private Dictionary<String, Int32> labels;
 		private Dictionary<String, Object> ROData;
 

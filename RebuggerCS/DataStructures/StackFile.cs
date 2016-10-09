@@ -10,11 +10,17 @@ namespace RebuggerCS
 
 		private List<UInt32> stack;
 		public List<UInt32> Stack { get {return stack;}}
-		public int StackPointer { get { return stackPointer;} }
+		public int StackPointer { get { return stackPointer;} set { stackPointer = value;} }
 		private int stackPointer;
+
 		public StackFile() {
 			this.stack = new List<UInt32> ();
 			stackPointer = 64000;
+		}
+
+		public StackFile(List<UInt32> parStack) {
+			this.stack = parStack;
+			stackPointer = 0;
 		}
 			
 		public void changeStackPointer(int difference) {

@@ -27,7 +27,7 @@ namespace RebuggerCS
         }
 
         public void ExecuteInstruction(String unsplitLine) {
-			List<String> line = new List<String>(unsplitLine.Split(' '));
+			List<String> line = new List<String>(unsplitLine.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries));
             if (line.Count == 0) return;
 
             //Get the instruction from the line object

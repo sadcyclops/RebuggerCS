@@ -7,6 +7,12 @@ namespace RebuggerCS
 		{
 			this.data = new int[3];
 		}
+
+		public SpecialRegisterFile(int[] special)
+		{
+			this.data = special;
+		}
+
 		public const uint BYTE = 255;
 		public const uint WORD = 65535;
 		protected int[] data;

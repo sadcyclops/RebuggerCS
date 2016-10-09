@@ -22,6 +22,14 @@ namespace RebuggerCS
 			this.data = new int[32];
 		}
 
+		public StandardRegisterFile(StackFile s, int[] file)
+		{
+			stack = s;
+
+			this.data = file;
+			stack.StackPointer = this.data[29];
+		}
+
 
 
 		/*	All accesors forced to return 0 from register 0.
