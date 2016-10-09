@@ -9,9 +9,9 @@ namespace RebuggerCS
         private Dictionary<String, Int32> labels;
 		private Dictionary<String, Object> RO_Data;
 
-		Dictionary<String, IALU> Rcommands = new Dictionary<String, IALU> ();
-		Dictionary<String, IALU> Jcommands = new Dictionary<String, IALU> ();
-		Dictionary<String, IALU> Icommands = new Dictionary<String, IALU> ();
+		private Dictionary<String, IALU> Rcommands = new Dictionary<String, IALU> ();
+		private Dictionary<String, IALU> Jcommands = new Dictionary<String, IALU> ();
+		private Dictionary<String, IALU> Icommands = new Dictionary<String, IALU> ();
 
         public InstructionMapper(Dictionary<String, Int32> label, Dictionary<String, Object> ROData)  {
             this.labels = label;
@@ -83,7 +83,72 @@ namespace RebuggerCS
             if (register == "$ra")
                 return 31;
             throw new ParserException();
-        }   
+        }
+
+		private void SetRCommands()
+		{
+			//add
+			this.Rcommands.Add("add", new AddCommand());
+			//addu
+			//sub
+			//subu
+			//mult
+			//multu
+			//div
+			//divu
+			//mfhi
+			//mflo
+			//mfcz
+			//mtcz
+			//and
+			//or
+			//xor
+			//nor
+			//slt
+			//sltu
+			//sll
+			//srl
+			//sra
+			//sllv
+			//srlv
+			//srav
+		}
+
+		private void SetICommands()
+		{
+			//addi
+			//addiu
+			//lw
+			//lh
+			//lhu
+			//lb
+			//lbu
+			//sw
+			//sh
+			//sb
+			//lui
+			//andi
+			//ori
+			//xori
+			//slti
+			//beq
+			//bne
+			//jr
+		}
+
+		private void SetJCommands()
+		{
+			//j
+			//jal
+		}
+
+		private void SetCommands()
+		{
+			SetICommands();
+			SetJCommands();
+			SetRCommands();
+		}
+
     }
 }
 
