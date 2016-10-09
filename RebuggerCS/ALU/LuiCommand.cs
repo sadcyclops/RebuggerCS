@@ -9,7 +9,7 @@ namespace RebuggerCS
 		override public void Execute(List<Int32> entries)
 		{
 			file.SetInt(entries[0], entries[1] << 16);
-			special.SetInt(0, special.GetInt(0) + 4);
+			special.SetInt(0, special.GetInt(0) + 1);
 		}
 
 	}

@@ -11,6 +11,7 @@ namespace RebuggerCS
 		private SpecialRegisterFile sRegisters;
 		//Stack
 		private StackFile stack;
+		private String[] codeArray;
 
 		/*I don't know what of these we need, I haven't totally read through them yet*/
 		private FileParser parser;
@@ -41,6 +42,7 @@ namespace RebuggerCS
 
 		public void RecieveCode(String[] code, Int32[] stopPoints)
 		{
+			codeArray = code;
 			parser = new FileParser(code);
 			breaks = new List<int>(stopPoints);
 		}
@@ -49,7 +51,9 @@ namespace RebuggerCS
 		{
 			parser.parse();
 			//mapper = new InstructionMapper(parser.Labels, parser.RO_Data);
-		}
+
+			mapper = new InstructionMapper(parser.Labels, parser.RO_Data, gpRegisters, sRegisters, stack);
+        }
 
 		//Called to continue after break
 		public void RecieveContinueSignal()
@@ -57,7 +61,7 @@ namespace RebuggerCS
 			continueSignal = true;
 		}
 
-		//Called to continue after break
+		//Called to step
 		public void RecieveStopSignal()
 		{
 			stopSignal = false;
@@ -65,11 +69,12 @@ namespace RebuggerCS
 
 		public void ExecuteCode()
 		{
-			while (!breaks.Contains(line) || continueSignal || !stopSignal)
+			while ((!breaks.Contains(line) && !stopSignal) || continueSignal)
 			{
 				if (breaks.Contains(line)) { continueSignal = false;}
 				if (!stopSignal) { stopSignal = true;}
 				//mapper.ExecuteInstruction();
+				mapper.ExecuteInstruction(codeArray[gpRegisters.GetInt(0)]);
 			}
 		}
 

@@ -25,7 +25,8 @@ namespace RebuggerCS
 			stack = parStack;
         }
 
-        public void ExecuteInstruction(List<String> line) {
+        public void ExecuteInstruction(String unsplitLine) {
+			List<String> line = new List<String>(unsplitLine.Split(' '));
             if (line.Count == 0) return;
 
             //Get the instruction from the line object

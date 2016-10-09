@@ -14,7 +14,7 @@ namespace RebuggerCS
 				file.SetWord(entries[0], 1, 65535);
 			else
 				file.SetWord(entries[0], 1, 0);
-			special.SetInt(0, special.GetInt(0) + 4);
+			special.SetInt(0, special.GetInt(0) + 1);
 		}
 
 	}

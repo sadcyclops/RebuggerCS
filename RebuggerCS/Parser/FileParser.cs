@@ -18,12 +18,15 @@ namespace RebuggerCS
 
 		public Dictionary<String, Int32> Labels { get { return labels; } }
 		public Dictionary<String, Object> RO_Data { get { return ROData; } }
+		public String[] Block { get { return block;} }
 
 		public void ClearComments()
 		{
 			for (int i = 0; i < block.Length; i++)
 			{ block[i] = block[i].Split('#')[0]; }
 		}
+
+
 
 		public void GetData()
 		{
