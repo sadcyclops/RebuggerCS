@@ -13,6 +13,8 @@ namespace RebuggerCS
 
 		private static StackFile instance;
 
+		public List<UInt32> Stack { get {return stack;}}
+
 		public StackFile(StandardRegisterFile file) {
 			this.stack = new List<UInt32> ();
 			this.sReg.AlterSP(64000);
