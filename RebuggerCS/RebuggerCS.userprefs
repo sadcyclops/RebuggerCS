@@ -1,13 +1,15 @@
 ﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default" StartupItem="RebuggerCS.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="DataStructures/StackFile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="DataStructures/RegisterFile.cs" Line="1" Column="1" />
       <File FileName="DataStructures/StackFile.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="25" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/michael/workspace/RebuggerCS/RebuggerCS/Program.cs" line="20" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

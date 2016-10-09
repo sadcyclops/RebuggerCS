@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{1E8CAC69-452D-433A-A493-13C94120D215}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>RebuggerCS</RootNamespace>
     <AssemblyName>RebuggerCS</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -25,9 +25,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Exceptions\StackException.cs" />
@@ -84,7 +81,7 @@
     <Compile Include="ALU\SravCommand.cs" />
     <Compile Include="ALU\StluCommand.cs" />
     <Compile Include="Exceptions\IllegalOpcodeException.cs" />
-    <Compile Include="AssemblyTest.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

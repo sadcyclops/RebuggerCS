@@ -25,12 +25,13 @@ namespace RebuggerCS
 			
 		public void changeStackPointer(int difference) {
 			if (difference < 0) {
-				int someThing = this.stackPointer % 4;
-				difference -= someThing;
 				this.stackPointer += difference;
-				while (difference <= 0) {
+				while (difference < -4) {
 					this.stack.Add(0);
 					difference += 4;
+				}
+				if (difference < 0) {
+					this.stack.Add (0);
 				}
 			} else {
 				while (difference >= 4) {
