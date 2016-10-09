@@ -3,7 +3,7 @@ namespace RebuggerCS
 {
 	public class SpecialRegisterFile : RegisterFile
 	{
-		public SpecialRegisterFile(StackFile stack)
+		public SpecialRegisterFile()
 		{
 			this.data = new int[3];
 		}

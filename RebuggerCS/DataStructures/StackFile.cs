@@ -13,7 +13,7 @@ namespace RebuggerCS
 
 		private static StackFile instance;
 
-		public StackFile(SpecialRegisterFile file) {
+		public StackFile(StandardRegisterFile file) {
 			this.stack = new List<UInt32> ();
 			this.sReg.AlterSP(64000);
 		}
@@ -46,7 +46,7 @@ namespace RebuggerCS
 				this.stack.Add((uint) value);
 			} else {
 				uint end = this.stack[this.stack.Count];
-				value <<= (((this.sReg.GetSP()+2 % 4) << 3); // previously stackPointer + 2 % 4 
+				value <<= (((this.sReg.GetSP()+2 % 4) << 3)); // previously stackPointer + 2 % 4 
 				end += value;
 				this.stack[this.stack.Count] = end;
 			}
