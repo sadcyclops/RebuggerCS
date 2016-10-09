@@ -1,29 +1,8 @@
 ﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default">
   <MonoDevelop.Ide.ItemProperties.RebuggerCS PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ALU/XorICommand.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ALU/IntALU.cs">
     <Files>
-      <File FileName="ALU/AddICommand.cs" Line="15" Column="1" />
-      <File FileName="ALU/AddIUCommand.cs" Line="13" Column="3" />
-      <File FileName="ALU/AddUCommand.cs" Line="15" Column="1" />
-      <File FileName="ALU/ALUCommand.cs" Line="10" Column="31" />
-      <File FileName="ALU/AndCommand.cs" Line="15" Column="2" />
-      <File FileName="ALU/AndICommand.cs" Line="4" Column="2" />
-      <File FileName="ALU/DivCommand.cs" Line="20" Column="1" />
-      <File FileName="ALU/DivUCommand.cs" Line="20" Column="1" />
-      <File FileName="ALU/IALU.cs" Line="1" Column="1" />
-      <File FileName="ALU/IntALU.cs" Line="8" Column="4" />
-      <File FileName="ALU/MultCommand.cs" Line="13" Column="20" />
-      <File FileName="ALU/MultUCommand.cs" Line="19" Column="2" />
-      <File FileName="ALU/NorCommand.cs" Line="17" Column="1" />
-      <File FileName="ALU/OrCommand.cs" Line="17" Column="1" />
-      <File FileName="ALU/OrICommand.cs" Line="17" Column="1" />
-      <File FileName="ALU/SltICommand.cs" Line="20" Column="1" />
-      <File FileName="ALU/SltCommand.cs" Line="20" Column="1" />
-      <File FileName="ALU/SltIUCommand.cs" Line="18" Column="2" />
-      <File FileName="ALU/SubCommand.cs" Line="16" Column="1" />
-      <File FileName="ALU/SubUCommand.cs" Line="16" Column="1" />
-      <File FileName="ALU/XorCommand.cs" Line="17" Column="1" />
-      <File FileName="ALU/XorICommand.cs" Line="17" Column="1" />
+      <File FileName="ALU/IntALU.cs" Line="237" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
