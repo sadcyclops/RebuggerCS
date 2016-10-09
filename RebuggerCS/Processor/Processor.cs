@@ -48,7 +48,7 @@ namespace RebuggerCS
 		public void ProcessCode()
 		{
 			parser.parse();
-			mapper = new InstructionMapper(parser.Labels, parser.RO_Data);
+			//mapper = new InstructionMapper(parser.Labels, parser.RO_Data);
 		}
 
 		//Called to continue after break
@@ -69,7 +69,7 @@ namespace RebuggerCS
 			{
 				if (breaks.Contains(line)) { continueSignal = false;}
 				if (!stopSignal) { stopSignal = true;}
-				mapper.ExecuteInstruction();
+				//mapper.ExecuteInstruction();
 			}
 		}
 
