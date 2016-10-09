@@ -9,7 +9,7 @@ namespace RebuggerCS
 		const uint WORD = 65535;
 
 		private List<UInt32> stack;
-		private SpecialRegisterFile sReg;
+		private StandardRegisterFile sReg;
 
 		private static StackFile instance;
 
