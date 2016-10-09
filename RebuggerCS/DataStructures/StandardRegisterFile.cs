@@ -9,7 +9,13 @@ namespace RebuggerCS
 
 		private StackFile stack;
 
-		public int[] Data { get { return data;} }
+		public int[] Data {
+			get {
+				data[29] = stack.StackPointer;
+				return data;
+			} 
+		}
+
 		public StandardRegisterFile(StackFile s)
 		{
 			stack = s;

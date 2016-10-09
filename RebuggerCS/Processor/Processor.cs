@@ -28,7 +28,7 @@ namespace RebuggerCS
 		public StandardRegisterFile GPRegisters { get {return this.gpRegisters;}}
 		public SpecialRegisterFile SRegisters { get {return this.sRegisters;}}
 		public StackFile Stack { get {return this.stack;}}
-		public Int32 Line { get {return this.line;}}
+		public Int32 Line { get {return this.sRegisters.GetInt(0);}}
 		public List<Int32> Breaks { get {return this.breaks;}}
 
 		public Processor ()
