@@ -12,9 +12,9 @@ namespace RebuggerCS
 			uint s = file.GetUInt(entries[1]);
 			uint lo = s / t;
 			uint hi = s % t;
-			special.SetUInt(2, lo);
-			special.SetUInt(3, hi);
-			special.SetInt(0, special.GetInt(0) + 4); // Check this one
+			special.SetUInt(1, lo);
+			special.SetUInt(2, hi);
+			special.SetInt(0, special.GetInt(0) + 1); // Check this one
 		}
 	}
 }

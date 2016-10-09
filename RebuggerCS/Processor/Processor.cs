@@ -57,7 +57,7 @@ namespace RebuggerCS
 			continueSignal = true;
 		}
 
-		//Called to continue after break
+		//Called to step
 		public void RecieveStopSignal()
 		{
 			stopSignal = false;
@@ -65,7 +65,7 @@ namespace RebuggerCS
 
 		public void ExecuteCode()
 		{
-			while (!breaks.Contains(line) || continueSignal || !stopSignal)
+			while ((!breaks.Contains(line) && !stopSignal) || continueSignal)
 			{
 				if (breaks.Contains(line)) { continueSignal = false;}
 				if (!stopSignal) { stopSignal = true;}

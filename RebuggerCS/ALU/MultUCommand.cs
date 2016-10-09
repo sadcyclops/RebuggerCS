@@ -14,7 +14,7 @@ namespace RebuggerCS
 			uint hi = (s * t) >> 32;
 			special.SetUInt(2, lo);
 			special.SetUInt(3, hi);
-			special.SetInt(0, special.GetInt(0) + 4);
+			special.SetInt(0, special.GetInt(0) + 1);
 		}
 	}
 }
