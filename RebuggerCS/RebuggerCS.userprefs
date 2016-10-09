@@ -1,8 +1,11 @@
 ﻿<Properties StartupConfiguration="{1E8CAC69-452D-433A-A493-13C94120D215}|Default">
   <MonoDevelop.Ide.ItemProperties.RebuggerCS PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ALU/IntALU.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ALU/LhuCommand.cs">
     <Files>
-      <File FileName="ALU/IntALU.cs" Line="308" Column="4" />
+      <File FileName="ALU/LbuCommand.cs" Line="17" Column="1" />
+      <File FileName="ALU/LhCommand.cs" Line="18" Column="4" />
+      <File FileName="ALU/LbCommand.cs" Line="17" Column="1" />
+      <File FileName="ALU/LhuCommand.cs" Line="16" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

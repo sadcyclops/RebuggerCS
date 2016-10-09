@@ -5,7 +5,7 @@ namespace RebuggerCS
 	{
 		public const uint BYTE = 255;
 		public const uint WORD = 65535;
-		protected uint[] data;
+		protected int[] data;
 
 		/*	All accesors forced to return 0 from register 0.
 			No other restructions applied as is MIPS standard*/
@@ -26,7 +26,7 @@ namespace RebuggerCS
 		public uint GetUInt(int register)
 		{
 			if (register == 0) { return (uint) 0; }
-			return this.data[register];
+			return (uint) this.data[register];
 		}
 
 		public int GetInt(int register)
@@ -37,29 +37,29 @@ namespace RebuggerCS
 		public void SetByte(int register, int pos, uint value)
 		{
 			if (pos > 3) {throw new RegisterException();}
-			uint target = this.data[register];
-			target &= ~((BYTE << 8 * pos));
-			target += (value << (8 * pos));
+			int target = this.data[register];
+			target &= (int) ~((BYTE << 8 * pos));
+			target += (int)(value << (8 * pos));
 			this.data[register] = target;
 		}
 
 		public void SetWord(int register, int pos, uint value)
 		{
 			if(pos > 2 || pos % 2 != 0){throw new RegisterException();}
-			uint target = this.data[register];
-			target &= ~((WORD << pos*8));
-			target += (value << (8 * pos));
+			int target = this.data[register];
+			target &= (int) ~((WORD << pos*8));
+			target += (int) (value << (8 * pos));
 			this.data[register] = target;
 		}
 
 		public void SetInt(int register, int value)
 		{
-			this.data[register] = (uint) value;
+			this.data[register] = value;
 		}
 
 		public void SetUInt(int register, uint value)
 		{
-			this.data[register] = value;
+			this.data[register] = (int) value;
 		}
 	}
 }
