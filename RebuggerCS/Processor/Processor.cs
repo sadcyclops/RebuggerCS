@@ -21,6 +21,7 @@ namespace RebuggerCS
 		private List<Int32> breaks;
 
 		private Boolean continueSignal;
+		private Boolean stopSignal;
 
 		//Properties
 		public StandardRegisterFile GPRegisters { get {return this.gpRegisters;}}
@@ -56,11 +57,18 @@ namespace RebuggerCS
 			continueSignal = true;
 		}
 
+		//Called to continue after break
+		public void RecieveStopSignal()
+		{
+			stopSignal = false;
+		}
+
 		public void ExecuteCode()
 		{
-			while (!breaks.Contains(line)||continueSignal)
+			while (!breaks.Contains(line) || continueSignal || !stopSignal)
 			{
-				if (continueSignal) { continueSignal = false;}
+				if (breaks.Contains(line)) { continueSignal = false;}
+				if (!stopSignal) { stopSignal = true;}
 				mapper.ExecuteInstruction();
 			}
 		}

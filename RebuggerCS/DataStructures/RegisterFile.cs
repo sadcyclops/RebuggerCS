@@ -7,6 +7,8 @@ namespace RebuggerCS
 		public const uint WORD = 65535;
 		protected int[] data;
 
+		public int[] Data { get { return data;} }
+
 		/*	All accesors forced to return 0 from register 0.
 			No other restructions applied as is MIPS standard*/
 		public byte GetByte(int register, int position)
