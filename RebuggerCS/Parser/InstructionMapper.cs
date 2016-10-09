@@ -48,7 +48,7 @@ namespace RebuggerCS
 			} else if (Jcommands.ContainsKey (instruction)) {
 				this.Jcommands [instruction].Execute (arguments);
 			} else {
-				throw new IllegalOpcodeException ();
+				throw new IllegalOpcodeException();
 			}
         }
 
@@ -129,53 +129,75 @@ namespace RebuggerCS
 			//or
 			this.Rcommands.Add("or", new OrCommand(file, special, stack));
 			//xor
-			this.Rcommands.Add("xor");
+			this.Rcommands.Add("xor", new XorCommand(file, special, stack));
 			//nor
-			this.Rcommands.Add("nor");
+			this.Rcommands.Add("nor", new NorCommand(file, special, stack));
 			//slt
-			this.Rcommands.Add("slt");
+			this.Rcommands.Add("slt", new SltCommand(file, special, stack));
 			//sltu
-			this.Rcommands.Add("sltu");
+			this.Rcommands.Add("sltu", new SltuCommand(file, special, stack));
 			//sll
-			this.Rcommands.Add("sll");
+			this.Rcommands.Add("sll", new SllCommand(file, special, stack));
 			//srl
-			this.Rcommands.Add("srl");
+			this.Rcommands.Add("srl", new SrlCommand(file, special, stack));
 			//sra
-			this.Rcommands.Add("sra");
+			this.Rcommands.Add("sra", new SraCommand(file, special, stack));
 			//sllv
-			this.Rcommands.Add("sllv");
+			this.Rcommands.Add("sllv", new SllvCommand(file, special, stack));
 			//srlv
-			this.Rcommands.Add("srlv");
+			this.Rcommands.Add("srlv", new SrlvCommand(file, special, stack));
 			//srav
-			this.Rcommands.Add("srav");
+			this.Rcommands.Add("srav", new SravCommand(file, special, stack));
+			//jr
+			this.Rcommands.Add("jr", new JrCommand(file,special,stack));
 		}
 
 		private void SetICommands()
 		{
 			//addi
+			this.Icommands.Add("addi", new AddICommand(file,special,stack));
 			//addiu
+			this.Icommands.Add("addiu", new AddIUCommand(file, special, stack));
 			//lw
+			this.Icommands.Add("lw", new LwCommand(file, special, stack));
 			//lh
+			this.Icommands.Add("lh", new LhCommand(file, special, stack));
 			//lhu
+			this.Icommands.Add("lhu", new LhuCommand(file, special, stack));
 			//lb
+			this.Icommands.Add("lb", new LbCommand(file, special, stack));
 			//lbu
+			this.Icommands.Add("lbu", new LbuCommand(file, special, stack));
 			//sw
+			this.Icommands.Add("sw",new SwCommand(file, special, stack));
 			//sh
+			this.Icommands.Add("sh",new ShCommand(file, special, stack));
 			//sb
+			this.Icommands.Add("sb", new SbCommand(file, special, stack));
 			//lui
+			this.Icommands.Add("lui", new LuiCommand(file, special, stack));
 			//andi
+			this.Icommands.Add("andi", new AndICommand(file, special, stack));
 			//ori
+			this.Icommands.Add("ori", new OrICommand(file, special, stack));
 			//xori
+			this.Icommands.Add("xori", new XorICommand(file, special, stack));
 			//slti
+			this.Icommands.Add("slti", new SltiCommand(file, special, stack));
+			//sltiu
+			this.Icommands.Add("sltiu", new SltiuCommand(file, special, stack));
 			//beq
+			this.Icommands.Add("beq", new BeqCommand(file, special, stack));
 			//bne
-			//jr
+			this.Icommands.Add("bne", new BneCommand(file, special, stack));
 		}
 
 		private void SetJCommands()
 		{
 			//j
+			this.Jcommands.Add("j", new JCommand(file, special, stack));
 			//jal
+			this.Jcommands.Add("jal", new JalCommand(file, special, stack));
 		}
 
 		private void SetCommands()
