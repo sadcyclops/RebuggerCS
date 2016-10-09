@@ -9,9 +9,9 @@ namespace RebuggerCS
         private Dictionary<String, Int32> labels;
 		private Dictionary<String, Object> RO_Data;
 
-		private Dictionary<String, IALU> Rcommands = new Dictionary<String, IALU> ();
-		private Dictionary<String, IALU> Jcommands = new Dictionary<String, IALU> ();
-		private Dictionary<String, IALU> Icommands = new Dictionary<String, IALU> ();
+		private Dictionary<String, ALUCommand> Rcommands = new Dictionary<String, ALUCommand> ();
+		private Dictionary<String, ALUCommand> Jcommands = new Dictionary<String, ALUCommand> ();
+		private Dictionary<String, ALUCommand> Icommands = new Dictionary<String, ALUCommand> ();
 
         public InstructionMapper(Dictionary<String, Int32> label, Dictionary<String, Object> ROData)  {
             this.labels = label;
@@ -33,6 +33,10 @@ namespace RebuggerCS
                 else if (line.Count > 0 && offset > -1)
                     throw new ParserException();
             }
+
+			if (Rcommands.ContainsKey (instruction)) {
+				this.Rcommands[instruction].
+			}
         }
 
         private Int32 ParseArgument(String argument, int offset) {
