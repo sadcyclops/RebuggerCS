@@ -2,7 +2,7 @@
 
 namespace RebuggerCS
 {
-	public class IllegalOpcodeException
+	public class IllegalOpcodeException : Exception
 	{
 		public IllegalOpcodeException () : base ("An illegal opcode was encountered") {}
 	}

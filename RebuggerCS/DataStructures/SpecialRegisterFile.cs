@@ -7,15 +7,5 @@ namespace RebuggerCS
 		{
 			this.data = new int[3];
 		}
-
-		public void AlterSP(int x)
-		{
-			this.data[0] += x;
-		}
-
-		public int GetSP()
-		{
-			return this.data[0];
-		}
 	}
 }
