@@ -5,7 +5,7 @@ namespace RebuggerCS
 	{
 		public StandardRegisterFile()
 		{
-			this.data = new uint[32];
+			this.data = new int[32];
 
 		}
 	}
