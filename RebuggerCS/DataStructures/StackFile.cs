@@ -17,6 +17,7 @@ namespace RebuggerCS
 
 		public StackFile(StandardRegisterFile file) {
 			this.stack = new List<UInt32> ();
+			this.sReg = file;
 			this.sReg.AlterSP(64000);
 		}
 			

@@ -7,7 +7,7 @@ namespace LETSFUCKTHISSTACKUP
 		static void Main()
 		{
 			StandardRegisterFile aReg = new StandardRegisterFile();
-			StackFile fuckMe = new StackFile(sReg);
+			StackFile fuckMe = new StackFile(aReg);
 
 			// pushByte
 			fuckMe.pushByte(0);
