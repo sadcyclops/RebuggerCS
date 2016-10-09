@@ -12,6 +12,7 @@ namespace RebuggerCS
 				file.SetInt(entries[0], 1);
 			else
 				file.SetInt(entries[0], 0);
+			special.SetInt(0, special.GetInt(0) + 4);
 
 		}
 

@@ -14,6 +14,7 @@ namespace RebuggerCS
 			int hi = s % t;
 			special.SetInt(2, lo);
 			special.SetInt(3, hi);
+			special.SetInt(0, special.GetInt(0) + 4); // Check this one
 		}
 	}
 }
