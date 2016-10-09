@@ -22,12 +22,12 @@ namespace RebuggerCS
             if (line.Count == 0) return;
 
             //Get the instruction from the line object
-            String instruction = line.RemoveAt(0);
+            String instruction = line[0];
 
             int offset = -1;
             List<int> arguments = new List<int>();
             while (line.Count > 0)  {
-                arguments.Add(ParseArgument(line.RemoveAt(0), out offset));
+                arguments.Add(ParseArgument(line[0], out offset));
                 if (line.Count == 0 && offset > -1)
                     arguments.Add(offset);
                 else if (line.Count > 0 && offset > -1)
@@ -42,12 +42,13 @@ namespace RebuggerCS
             } else if (argument.Contains("(")) {
                 offset = argument[0];
                 //remove the parans around the register
-                String register = argument.Replace('(');
-                register = register.Replace(')');
+                String register = argument.Replace("(","");
+				register = register.Replace(")","");
                 //remove the first offset
                 register = register.Remove(0,1);
                 return ParseRegister(register);
-			} else if (Int32.TryParse(argument)){
+				int result;
+			} else if (Int32.TryParse(argument, result)) {
                 return int.Parse(argument);
             } else {
                 if (labels.ContainsKey(argument))

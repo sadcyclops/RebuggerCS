@@ -41,7 +41,25 @@
     <Compile Include="Processor\Processor.cs" />
     <Compile Include="ALU\ALUCommand.cs" />
     <Compile Include="ALU\AddCommand.cs" />
-    <Compile Include="AddUCommand.cs" />
+    <Compile Include="ALU\AddICommand.cs" />
+    <Compile Include="ALU\AddIUCommand.cs" />
+    <Compile Include="ALU\AddUCommand.cs" />
+    <Compile Include="ALU\AndCommand.cs" />
+    <Compile Include="ALU\AndICommand.cs" />
+    <Compile Include="ALU\DivCommand.cs" />
+    <Compile Include="ALU\DivUCommand.cs" />
+    <Compile Include="ALU\MultCommand.cs" />
+    <Compile Include="ALU\MultUCommand.cs" />
+    <Compile Include="ALU\NorCommand.cs" />
+    <Compile Include="ALU\OrCommand.cs" />
+    <Compile Include="ALU\OrICommand.cs" />
+    <Compile Include="ALU\SltCommand.cs" />
+    <Compile Include="ALU\SltICommand.cs" />
+    <Compile Include="ALU\SltIUCommand.cs" />
+    <Compile Include="ALU\SubCommand.cs" />
+    <Compile Include="ALU\SubUCommand.cs" />
+    <Compile Include="ALU\XorCommand.cs" />
+    <Compile Include="ALU\XorICommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
