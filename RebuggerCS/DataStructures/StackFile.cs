@@ -40,7 +40,7 @@ namespace RebuggerCS
 					if(this.StackPointer >= 63997) {
 						throw new StackException();
 					}
-					this.stack.RemoveAt(this.stack.Count);
+					this.stack.RemoveAt(this.stack.Count - 1);
 				}
 				this.stackPointer -= difference;
 			}
