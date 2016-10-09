@@ -83,6 +83,7 @@
     <Compile Include="ALU\StluCommand.cs" />
     <Compile Include="Exceptions\IllegalOpcodeException.cs" />
     <Compile Include="DataStructures\LETSFUCKTHISSTACKUP.cs" />
+    <Compile Include="AssemblyTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

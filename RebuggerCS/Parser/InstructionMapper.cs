@@ -23,6 +23,7 @@ namespace RebuggerCS
 			file = parFile;
 			special = parSpecial;
 			stack = parStack;
+			SetCommands();
         }
 
         public void ExecuteInstruction(String unsplitLine) {
@@ -31,11 +32,13 @@ namespace RebuggerCS
 
             //Get the instruction from the line object
             String instruction = line[0];
+			line.RemoveAt(0);
 
             int offset = -1;
             List<int> arguments = new List<int>();
             while (line.Count > 0)  {
                 arguments.Add(ParseArgument(line[0], offset));
+				line.RemoveAt(0);
                 if (line.Count == 0 && offset > -1)
                     arguments.Add(offset);
                 else if (line.Count > 0 && offset > -1)
