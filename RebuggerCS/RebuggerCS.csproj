@@ -83,6 +83,7 @@
     <Compile Include="ALU\SrlvCommand.cs" />
     <Compile Include="ALU\SravCommand.cs" />
     <Compile Include="ALU\StluCommand.cs" />
+    <Compile Include="Exceptions\IllegalOpcodeException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

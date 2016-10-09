@@ -40,6 +40,16 @@ namespace RebuggerCS
                 else if (line.Count > 0 && offset > -1)
                     throw new ParserException();
             }
+
+			if (Rcommands.ContainsKey (instruction)) {
+				this.Rcommands [instruction].Execute (arguments);
+			} else if (Icommands.ContainsKey (instruction)) {
+				this.Icommands [instruction].Execute (arguments);
+			} else if (Jcommands.ContainsKey (instruction)) {
+				this.Jcommands [instruction].Execute (arguments);
+			} else {
+				throw new IllegalOpcodeException ();
+			}
         }
 
         private Int32 ParseArgument(String argument, int offset) {
