@@ -68,9 +68,9 @@ namespace RebuggerCS
 
 		public void ExecuteCode()
 		{
-			for (int i = 0; i < codeArray.Length; i++)
+			for (int i = 0; i < 100000; i++)
 			{
-				mapper.ExecuteInstruction(codeArray[gpRegisters.GetInt(0)]);
+				mapper.ExecuteInstruction(codeArray[sRegisters.GetInt(0)]);
 			}
 		}
 
