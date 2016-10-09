@@ -8,7 +8,7 @@ namespace RebuggerCS
 
 		override public void Execute(List<Int32> entries)
 		{
-			file.SetInt(entries[0], entries[1] + entries[2]);
+			file.SetUInt(entries[0], file.GetUInt(entries[1]) + (uint)entries[2]);
 		}
 	}
 }

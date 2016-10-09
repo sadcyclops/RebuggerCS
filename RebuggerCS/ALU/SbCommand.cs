@@ -8,7 +8,7 @@ namespace RebuggerCS
 
 		override public void Execute(List<Int32> entries)
 		{
-			stack.setByte(file.GetInt(entries[1]) + entries[2], file.GetBytee(entries[0], 0));
+			stack.setByte(file.GetInt(entries[1]) + entries[2], file.GetByte(entries[0], 0));
 		}
 
 	}

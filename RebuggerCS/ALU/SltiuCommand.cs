@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 namespace RebuggerCS
 {
-	public class SltIUCommand : ALUCommand
+	public class SltiuCommand : ALUCommand
 	{
-		public SltIUCommand(RegisterFile file, RegisterFile special, StackFile stack) : base(file, special, stack) { }
+		public SltiuCommand(RegisterFile file, RegisterFile special, StackFile stack) : base(file, special, stack) { }
 
 		override public void Execute(List<Int32> entries)
 		{

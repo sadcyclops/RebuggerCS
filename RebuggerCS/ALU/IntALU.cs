@@ -89,7 +89,7 @@ namespace RebuggerCS
 		}
 
 
-		public void Andi(RegisterFile file, int rt, int rs, uint immediate)
+		public void Andi(RegisterFile file, int rt, int rs, int immediate)
 		{
 			file.SetUInt(rt, file.GetUInt(rs) & immediate);
 
