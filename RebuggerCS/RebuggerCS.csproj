@@ -74,6 +74,14 @@
     <Compile Include="ALU\SbCommand.cs" />
     <Compile Include="ALU\ShCommand.cs" />
     <Compile Include="ALU\SwCommand.cs" />
+    <Compile Include="ALU\MfhiCommand.cs" />
+    <Compile Include="ALU\MfloCommand.cs" />
+    <Compile Include="ALU\SllCommand.cs" />
+    <Compile Include="ALU\SrlCommand.cs" />
+    <Compile Include="ALU\SraCommand.cs" />
+    <Compile Include="ALU\SllvCommand.cs" />
+    <Compile Include="ALU\SrlvCommand.cs" />
+    <Compile Include="ALU\SravCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
