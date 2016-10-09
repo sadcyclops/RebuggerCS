@@ -9,13 +9,20 @@ namespace RebuggerCS
         private Dictionary<String, Int32> labels;
 		private Dictionary<String, Object> RO_Data;
 
-		private Dictionary<String, IALU> Rcommands = new Dictionary<String, IALU> ();
-		private Dictionary<String, IALU> Jcommands = new Dictionary<String, IALU> ();
-		private Dictionary<String, IALU> Icommands = new Dictionary<String, IALU> ();
+		private Dictionary<String, ALUCommand> Rcommands = new Dictionary<String, ALUCommand> ();
+		private Dictionary<String, ALUCommand> Jcommands = new Dictionary<String, ALUCommand> ();
+		private Dictionary<String, ALUCommand> Icommands = new Dictionary<String, ALUCommand> ();
 
-        public InstructionMapper(Dictionary<String, Int32> label, Dictionary<String, Object> ROData)  {
+		private StandardRegisterFile file;
+		private SpecialRegisterFile special;
+		private StackFile stack;
+
+		public InstructionMapper(Dictionary<String, Int32> label, Dictionary<String, Object> ROData, StandardRegisterFile parFile, SpecialRegisterFile parSpecial, StackFile parStack)  {
             this.labels = label;
             this.RO_Data = ROData;
+			file = parFile;
+			special = parSpecial;
+			stack = parStack;
         }
 
         public void ExecuteInstruction(List<String> line) {
@@ -88,30 +95,49 @@ namespace RebuggerCS
 		private void SetRCommands()
 		{
 			//add
-			this.Rcommands.Add("add", new AddCommand());
+			this.Rcommands.Add("add", new AddCommand(file, special, stack));
 			//addu
+			this.Rcommands.Add("addu", new AddUCommand(file, special, stack));
 			//sub
+			this.Rcommands.Add("sub", new SubCommand(file, special, stack));
 			//subu
+			this.Rcommands.Add("subu", new SubUCommand(file, special, stack));
 			//mult
+			this.Rcommands.Add("mult", new MultCommand(file, special, stack));
 			//multu
+			this.Rcommands.Add("multu", new MultUCommand(file, special, stack));
 			//div
+			this.Rcommands.Add("div", new DivCommand(file, special, stack));
 			//divu
+			this.Rcommands.Add("divu", new DivUCommand(file, special, stack));
 			//mfhi
+			this.Rcommands.Add("mfhi", new MfhiCommand(file, special, stack));
 			//mflo
-			//mfcz
-			//mtcz
+			this.Rcommands.Add("mflo", new MfloCommand(file, special, stack));
 			//and
+			this.Rcommands.Add("and", new AndCommand(file, special, stack));
 			//or
+			this.Rcommands.Add("or", new OrCommand(file, special, stack));
 			//xor
+			this.Rcommands.Add("xor");
 			//nor
+			this.Rcommands.Add("nor");
 			//slt
+			this.Rcommands.Add("slt");
 			//sltu
+			this.Rcommands.Add("sltu");
 			//sll
+			this.Rcommands.Add("sll");
 			//srl
+			this.Rcommands.Add("srl");
 			//sra
+			this.Rcommands.Add("sra");
 			//sllv
+			this.Rcommands.Add("sllv");
 			//srlv
+			this.Rcommands.Add("srlv");
 			//srav
+			this.Rcommands.Add("srav");
 		}
 
 		private void SetICommands()
